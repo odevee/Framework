@@ -37,6 +37,12 @@ world = World(MAP_WIDTH, MAP_HEIGHT)
 world.spawn("Food")
 world.spawn("agent")
 
+def WorldRender(self):
+    for i in range(MAP_HEIGHT):
+        for j in range(MAP_WIDTH):
+            #if self.world.entities[i][j] is type
+            pass
+
 #world loop
 while True:
     #get all the user events

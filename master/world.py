@@ -6,8 +6,8 @@ class World:
         self.height = h
 
     # Array mit Entities
-        entities = [[0 for x in range (w)] for y in range(h)]
-        entities_n = entities
+        self.entities = [[0 for x in range (w)] for y in range(h)]
+        self.entities_n = self.entities
 
     # Spawns entities
     def spawn(self, type):
@@ -21,5 +21,5 @@ class World:
     # Konflikt loesen
     def breakTie(self):
         pass
-    
+
 
