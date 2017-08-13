@@ -1,2 +1,2 @@
 from enum import Enum
-EntityType = Enum('Agent', 'Food', 'Goal', 'Obstacle')
+EntityType = Enum('EntityType', 'Agent Food Goal Obstacle')
