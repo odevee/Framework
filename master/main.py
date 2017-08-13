@@ -46,15 +46,11 @@ world.spawn(EntityType.Food, 7, 7)
 world.spawn(EntityType.Goal, 9, 9)
 world.spawn(EntityType.Obstacle, 3, 3)
 
-def WorldRender():
+def Render():
     for i in range(MAP_HEIGHT):
         for j in range(MAP_WIDTH):
-            print("i=",i," j=", j)
-            #if world.entities[i][j] != 0:
-             #  print("Objekt gefunden", world.entities[i][j])
-            #print(type(world.entities[i][j]))
+            #print("i=",i," j=", j)
             if type(world.entities[i][j]) is Agent:
-                #print("Agent gezeichnet")
                 DISP_SURF.blit(AGENT, (i * TILESIZE, j * TILESIZE))
             if type(world.entities[i][j]) is Food:
                 DISP_SURF.blit(FOOD, (i * TILESIZE, j * TILESIZE))
@@ -71,11 +67,12 @@ while True:
         if event.type == QUIT:
             pygame.quit()
             sys.exit()
+    #draw grid
     DISP_SURF.fill(BLACK)
     for row in range(MAP_HEIGHT):
         for column in range(MAP_WIDTH):
-            #add a white square (drawing surface, colour, coords)
-            #the last parameter sets the border
+            #add a white square (drawing surface, colour, coordinates)
+            #the last parameter sets the border thickness
             pygame.draw.rect(DISP_SURF, WHITE, (column*TILESIZE, row*TILESIZE, TILESIZE,TILESIZE), 1)
     #update the display
     fpsClock.tick(FPS)
@@ -85,5 +82,5 @@ while True:
                 print("Es ist eine Entity")
                 tmp = world.entities[i][j]
                 Entity.update(world.entities[i][j])
-    WorldRender()
+    Render()
     pygame.display.update()
