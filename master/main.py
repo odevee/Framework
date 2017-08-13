@@ -5,7 +5,9 @@ import pygame, sys, random
 from pygame.locals import *
 
 #import classes
-from .world import World
+from master.world import World
+from master.food import Food
+from master.agent import agent
 
 #constants
 FPS = 10
@@ -32,6 +34,8 @@ DISP_SURF = pygame.display.set_mode((MAP_WIDTH*TILESIZE, MAP_HEIGHT*TILESIZE))
 pygame.display.set_caption('tilemap')
 
 world = World(MAP_WIDTH, MAP_HEIGHT)
+world.spawn("Food")
+world.spawn("agent")
 
 #world loop
 while True:
