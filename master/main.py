@@ -29,7 +29,7 @@ FOOD = pygame.image.load('food.bmp')
 
 #set up display
 DISP_SURF = pygame.display.set_mode((MAP_WIDTH*TILESIZE, MAP_HEIGHT*TILESIZE))
-pygame.display.set_caption('tilemap')
+pygame.display.set_caption('World')
 
 world = World(MAP_WIDTH, MAP_HEIGHT)
 
