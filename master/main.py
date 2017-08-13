@@ -1,6 +1,5 @@
 #import modules
-import pygame, sys
-import random
+import pygame, sys, random
 
 #import some useful constants
 from pygame.locals import *
@@ -22,14 +21,14 @@ GREEN = (0,200,0)
 BLUE = (0,0,200)
 
 pygame.init()
-fpsClock  =pygame.time.Clock()
+fpsClock = pygame.time.Clock()
 
 #images
 AGENT  = pygame.image.load('agent.bmp')
 FOOD = pygame.image.load('food.bmp')
 
 #set up display
-DISPLAYSURF = pygame.display.set_mode((MAP_WIDTH*TILESIZE,MAP_HEIGHT*TILESIZE))
+DISP_SURF = pygame.display.set_mode((MAP_WIDTH*TILESIZE, MAP_HEIGHT*TILESIZE))
 pygame.display.set_caption('tilemap')
 
 #world loop
@@ -40,12 +39,12 @@ while True:
         if event.type == QUIT:
             pygame.quit()
             sys.exit()
-    DISPLAYSURF.fill(BLACK)
+    DISP_SURF.fill(BLACK)
     for row in range(MAP_HEIGHT):
         for column in range(MAP_WIDTH):
             #add a white square (drawing surface, colour, coords)
             #the last parameter sets the border
-            pygame.draw.rect(DISPLAYSURF, WHITE, (column*TILESIZE, row*TILESIZE, TILESIZE,TILESIZE), 1)
+            pygame.draw.rect(DISP_SURF, WHITE, (column*TILESIZE, row*TILESIZE, TILESIZE,TILESIZE), 1)
     #update the display
     fpsClock.tick(FPS)
     pygame.display.update()
