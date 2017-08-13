@@ -8,5 +8,5 @@ class Entity:
             self.walkable = walkable
 
     def update(self):
-        pass
+        print("Update")
 

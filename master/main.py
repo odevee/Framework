@@ -5,6 +5,7 @@ import pygame, sys, random
 from pygame.locals import *
 
 #import classes
+from master.entity import Entity
 from master.world import World
 from master.entityType import EntityType
 from master.agent import Agent
@@ -78,5 +79,9 @@ while True:
             pygame.draw.rect(DISP_SURF, WHITE, (column*TILESIZE, row*TILESIZE, TILESIZE,TILESIZE), 1)
     #update the display
     fpsClock.tick(FPS)
+    for i in range(MAP_HEIGHT):
+        for j in range(MAP_WIDTH):
+            if(type(world.entities[i][j]) is Entity):
+                Entity(world.entities[i][j]).update()
     WorldRender()
     pygame.display.update()
