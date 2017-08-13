@@ -5,8 +5,11 @@ class Entity:
             self.x = x
             self.y = y
             self.walkable = walkable
- # Attribute
-x = 0
-y = 0
-walkable = 0
+    # Attribute
+    x = 0
+    y = 0
+    walkable = 0
+    def update(self):
+        self.x = self.x
 
+    
