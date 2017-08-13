@@ -1,5 +1,5 @@
 from .food import Food
-from .agent import agent
+from .agent import Agent
 from .entityType import EntityType
 class World:
     def __init__(self, w, h):
@@ -13,7 +13,7 @@ class World:
     # Spawns entities
     def spawn(self, type, x, y):
         if type == EntityType.Agent:
-            self.entities[x][y] = agent(x,y)
+            self.entities[x][y] = Agent(x,y)
         elif type == EntityType.Food:
             print("spawn food")
         elif type == EntityType.Goal:
