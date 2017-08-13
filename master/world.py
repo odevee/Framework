@@ -3,6 +3,8 @@ class world:
         self.width = w
         self.height = h
 
-    # Array mit 
+    # Array mit Entities
+        entities = [[0 for x in range(w)] for y in range(h)]
+    entities = [[0 for x in range(w)] for y in range(h)]
 
 
