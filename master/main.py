@@ -8,7 +8,7 @@ from pygame.locals import *
 from master.world import World
 from master.entityType import EntityType
 from master.food import Food
-from master.agent import agent
+from master.agent import Agent
 
 #constants
 FPS = 10
@@ -36,13 +36,17 @@ pygame.display.set_caption('tilemap')
 
 #initialize world
 world = World(MAP_WIDTH, MAP_HEIGHT)
-world.spawn(EntityType.Agent)
-world.spawn(EntityType.Food)
+world.spawn(EntityType.Agent, 5, 5)
+world.spawn(EntityType.Food,7, 7)
 
-def WorldRender(self):
+def WorldRender():
     for i in range(MAP_HEIGHT):
         for j in range(MAP_WIDTH):
-            if self.world.entities[i][j] is agent:
+            print("i=",i," j=", j)
+            #if world.entities[i][j] != 0:
+             #  print("Objekt gefunden", world.entities[i][j])
+            if type(world.entities[i][j]) is Agent:
+                print("Agent gezeichnet")
                 DISP_SURF.blit(AGENT, (i * TILESIZE, j * TILESIZE))
 
 #world loop
@@ -61,5 +65,5 @@ while True:
             pygame.draw.rect(DISP_SURF, WHITE, (column*TILESIZE, row*TILESIZE, TILESIZE,TILESIZE), 1)
     #update the display
     fpsClock.tick(FPS)
-    pygame.display.update()
     WorldRender()
+    pygame.display.update()
