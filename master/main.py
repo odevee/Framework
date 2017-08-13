@@ -81,7 +81,9 @@ while True:
     fpsClock.tick(FPS)
     for i in range(MAP_HEIGHT):
         for j in range(MAP_WIDTH):
-            if(type(world.entities[i][j]) is Entity):
-                Entity(world.entities[i][j]).update()
+            if isinstance(world.entities[i][j], Entity):
+                print("Es ist eine Entity")
+                tmp = world.entities[i][j]
+                Entity.update(world.entities[i][j])
     WorldRender()
     pygame.display.update()

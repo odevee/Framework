@@ -8,5 +8,5 @@ class Entity:
             self.walkable = walkable
 
     def update(self):
-        print("Update")
+        print("Update mit x = ", self.x, " und y = ", self.y)
 
