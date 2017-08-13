@@ -1,4 +1,8 @@
 class world:
-    def __init__(self):
-        pass
+    def __init__(self, w, h):
+        self.width = w
+        self.height = h
+
+    # Array mit 
+
 
