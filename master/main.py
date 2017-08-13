@@ -34,6 +34,7 @@ FOOD = pygame.image.load('food.bmp')
 DISP_SURF = pygame.display.set_mode((MAP_WIDTH*TILESIZE, MAP_HEIGHT*TILESIZE))
 pygame.display.set_caption('tilemap')
 
+#initialize world
 world = World(MAP_WIDTH, MAP_HEIGHT)
 world.spawn(EntityType.Agent)
 world.spawn(EntityType.Food)
