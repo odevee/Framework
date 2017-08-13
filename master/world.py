@@ -12,15 +12,19 @@ class World:
 
     # Spawns entities
     def spawn(self, type, x, y):
-        if type == EntityType.Food :
-            print("spawn food")
-        if type == EntityType.Agent :
+        if type == EntityType.Agent:
             self.entities[x][y] = agent(x,y)
+        elif type == EntityType.Food:
+            print("spawn food")
+        elif type == EntityType.Goal:
+            print("spawn goal")
+        elif type == EntityType.Obstacle:
+            print("spawn obstacle")
+        else:
+            print("ERROR: Entity could not be spawned, type doesn't exist")
     # get SubArray for vision
     def getSlice(self, x, y, radius):
         pass
     # Konflikt loesen
     def breakTie(self):
         pass
-
-
