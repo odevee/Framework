@@ -5,6 +5,7 @@ import pygame, sys, random
 from pygame.locals import *
 
 #import classes
+from master.entity import Entity
 from master.world import World
 from master.entityType import EntityType
 from master.agent import Agent
@@ -31,7 +32,7 @@ fpsClock = pygame.time.Clock()
 #images
 AGENT  = pygame.image.load('agent.bmp')
 FOOD = pygame.image.load('food.bmp')
-OBSTACLE = pygame.image.load('')
+OBSTACLE = pygame.image.load('obstacle.bmp')
 GOAL = pygame.image.load('goal.bmp')
 
 #set up display
@@ -76,5 +77,8 @@ while True:
             pygame.draw.rect(DISP_SURF, WHITE, (column*TILESIZE, row*TILESIZE, TILESIZE,TILESIZE), 1)
     #update the display
     fpsClock.tick(FPS)
+    for i in range(MAP_HEIGHT):
+        for j in range(MAP_WIDTH):
+            Entity(world.entities[i][j]).update();
     WorldRender()
     pygame.display.update()
