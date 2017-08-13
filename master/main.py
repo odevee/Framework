@@ -6,6 +6,7 @@ from pygame.locals import *
 
 #import classes
 from master.world import World
+from master.entityType import EntityType
 from master.food import Food
 from master.agent import agent
 
@@ -34,8 +35,8 @@ DISP_SURF = pygame.display.set_mode((MAP_WIDTH*TILESIZE, MAP_HEIGHT*TILESIZE))
 pygame.display.set_caption('tilemap')
 
 world = World(MAP_WIDTH, MAP_HEIGHT)
-world.spawn("Food")
-world.spawn("agent")
+world.spawn(EntityType.Agent)
+world.spawn(EntityType.Food)
 
 def WorldRender(self):
     for i in range(MAP_HEIGHT):

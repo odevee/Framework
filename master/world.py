@@ -1,5 +1,6 @@
 from .food import Food
 from .agent import agent
+from .entityType import EntityType
 class World:
     def __init__(self, w, h):
         self.width = w
@@ -11,9 +12,9 @@ class World:
 
     # Spawns entities
     def spawn(self, type):
-        if type == "Food" :
+        if type == EntityType.Food :
             print("spawn food")
-        if type == "agent" :
+        if type == EntityType.Agent :
             self.entities[4][4] = agent(4,4)
     # get SubArray for vision
     def getSlice(self, x, y, radius):
