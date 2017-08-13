@@ -41,8 +41,8 @@ world.spawn(EntityType.Food)
 def WorldRender(self):
     for i in range(MAP_HEIGHT):
         for j in range(MAP_WIDTH):
-            #if self.world.entities[i][j] is type
-            pass
+            if self.world.entities[i][j] is agent:
+                DISP_SURF.blit(AGENT, (i * TILESIZE, j * TILESIZE))
 
 #world loop
 while True:
