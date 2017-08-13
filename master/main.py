@@ -6,6 +6,9 @@ from pygame.locals import *
 
 #import classes
 from master.world import World
+from master.entityType import EntityType
+from master.food import Food
+from master.agent import agent
 
 #constants
 FPS = 10
@@ -29,9 +32,17 @@ FOOD = pygame.image.load('food.bmp')
 
 #set up display
 DISP_SURF = pygame.display.set_mode((MAP_WIDTH*TILESIZE, MAP_HEIGHT*TILESIZE))
-pygame.display.set_caption('World')
+pygame.display.set_caption('tilemap')
 
 world = World(MAP_WIDTH, MAP_HEIGHT)
+world.spawn(EntityType.Agent)
+world.spawn(EntityType.Food)
+
+def WorldRender(self):
+    for i in range(MAP_HEIGHT):
+        for j in range(MAP_WIDTH):
+            #if self.world.entities[i][j] is type
+            pass
 
 #world loop
 while True:
@@ -50,3 +61,4 @@ while True:
     #update the display
     fpsClock.tick(FPS)
     pygame.display.update()
+    WorldRender()
