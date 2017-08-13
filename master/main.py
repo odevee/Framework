@@ -31,8 +31,8 @@ fpsClock = pygame.time.Clock()
 #images
 AGENT  = pygame.image.load('agent.bmp')
 FOOD = pygame.image.load('food.bmp')
-OBSTACLE = pygame.image.load('')
 GOAL = pygame.image.load('goal.bmp')
+OBSTACLE = pygame.image.load('obstacle.bmp')
 
 #set up display
 DISP_SURF = pygame.display.set_mode((MAP_WIDTH*TILESIZE, MAP_HEIGHT*TILESIZE))
@@ -42,6 +42,8 @@ pygame.display.set_caption('tilemap')
 world = World(MAP_WIDTH, MAP_HEIGHT)
 world.spawn(EntityType.Agent, 5, 5)
 world.spawn(EntityType.Food, 7, 7)
+world.spawn(EntityType.Goal, 9, 9)
+world.spawn(EntityType.Obstacle, 3, 3)
 
 def WorldRender():
     for i in range(MAP_HEIGHT):
