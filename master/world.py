@@ -1,2 +1,3 @@
-class World:
-    pass
+class world:
+    def __init__(self):
+
