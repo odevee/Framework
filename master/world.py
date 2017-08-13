@@ -1,5 +1,7 @@
-from .food import Food
 from .agent import Agent
+from .food import Food
+from .obstacle import Obstacle
+from .goal import Goal
 from .entityType import EntityType
 class World:
     def __init__(self, w, h):
@@ -13,13 +15,13 @@ class World:
     # Spawns entities
     def spawn(self, type, x, y):
         if type == EntityType.Agent:
-            self.entities[x][y] = Agent(x,y)
+            self.entities[x][y] = Agent(x, y)
         elif type == EntityType.Food:
-            print("spawn food")
+            self.entities[x][y] = Food(x, y)
         elif type == EntityType.Goal:
-            print("spawn goal")
+            self.entities[x][y] = Goal(x, y)
         elif type == EntityType.Obstacle:
-            print("spawn obstacle")
+            self.entities[x][y] = Obstacle(x, y)
         else:
             print("ERROR: Entity could not be spawned, type doesn't exist")
     # get SubArray for vision

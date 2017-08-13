@@ -7,8 +7,10 @@ from pygame.locals import *
 #import classes
 from master.world import World
 from master.entityType import EntityType
-from master.food import Food
 from master.agent import Agent
+from master.food import Food
+from master.obstacle import Obstacle
+from master.goal import Goal
 
 #constants
 FPS = 10
@@ -29,6 +31,8 @@ fpsClock = pygame.time.Clock()
 #images
 AGENT  = pygame.image.load('agent.bmp')
 FOOD = pygame.image.load('food.bmp')
+OBSTACLE = pygame.image.load('')
+GOAL = pygame.image.load('goal.bmp')
 
 #set up display
 DISP_SURF = pygame.display.set_mode((MAP_WIDTH*TILESIZE, MAP_HEIGHT*TILESIZE))
@@ -37,7 +41,7 @@ pygame.display.set_caption('tilemap')
 #initialize world
 world = World(MAP_WIDTH, MAP_HEIGHT)
 world.spawn(EntityType.Agent, 5, 5)
-world.spawn(EntityType.Food,7, 7)
+world.spawn(EntityType.Food, 7, 7)
 
 def WorldRender():
     for i in range(MAP_HEIGHT):
@@ -45,9 +49,16 @@ def WorldRender():
             print("i=",i," j=", j)
             #if world.entities[i][j] != 0:
              #  print("Objekt gefunden", world.entities[i][j])
+            #print(type(world.entities[i][j]))
             if type(world.entities[i][j]) is Agent:
-                print("Agent gezeichnet")
+                #print("Agent gezeichnet")
                 DISP_SURF.blit(AGENT, (i * TILESIZE, j * TILESIZE))
+            if type(world.entities[i][j]) is Food:
+                DISP_SURF.blit(FOOD, (i * TILESIZE, j * TILESIZE))
+            if type(world.entities[i][j]) is Goal:
+                DISP_SURF.blit(GOAL, (i * TILESIZE, j * TILESIZE))
+            if type(world.entities[i][j]) is Obstacle:
+                DISP_SURF.blit(OBSTACLE, (i * TILESIZE, j * TILESIZE))
 
 #world loop
 while True:
