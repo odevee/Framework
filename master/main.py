@@ -54,3 +54,4 @@ while True:
     #update the display
     fpsClock.tick(FPS)
     pygame.display.update()
+    WorldRender()

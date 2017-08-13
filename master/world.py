@@ -8,16 +8,18 @@ class World:
     # Array mit Entities
         entities = [[0 for x in range (w)] for y in range(h)]
         entities_n = entities
+
     # Spawns entities
     def spawn(self, type):
         if type == "Food" :
             print("spawn food")
         if type == "agent" :
-            print("spawn agent")
+            self.entities[4][4] = agent(4,4)
     # get SubArray for vision
     def getSlice(self, x, y, radius):
         pass
     # Konflikt loesen
     def breakTie(self):
         pass
+    
 
