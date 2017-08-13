@@ -5,7 +5,7 @@ import pygame, sys, random
 from pygame.locals import *
 
 #import classes
-from .world import World
+from master.world import World
 
 #constants
 FPS = 10
