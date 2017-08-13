@@ -1,15 +1,12 @@
 class Entity:
 
-
-    def __init__(self, x, y, walkable):
+    # x und y geben die Koordinaten des Objekt Entity an (Typ Integer)
+    # wenn walkable == 1, kann man das Feld der Entität begangen werden. Wenn 0, dann nicht
+    def __init__(self, x, y):
             self.x = x
             self.y = y
-            self.walkable = walkable
-    # Attribute
-    x = 0
-    y = 0
-    walkable = 0
-    def update(self):
-        self.x = self.x
+            self.walkable = 1
 
-    
+    def update(self):
+        pass
+
