@@ -11,11 +11,11 @@ class World:
         self.entities_n = self.entities
 
     # Spawns entities
-    def spawn(self, type):
+    def spawn(self, type, x, y):
         if type == EntityType.Food :
             print("spawn food")
         if type == EntityType.Agent :
-            self.entities[4][4] = agent(4,4)
+            self.entities[x][y] = agent(x,y)
     # get SubArray for vision
     def getSlice(self, x, y, radius):
         pass
