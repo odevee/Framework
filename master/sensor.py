@@ -1,6 +1,4 @@
-class sensor(self):
-
-    def __init__(self, radius, resolution, canSee):
+class Sensor(self):
+    def __init__(self, radius = 0, resolution = 0):
         self.radius      = radius
         self.resolution  = resolution
-        self.canSee      = canSee
