@@ -16,8 +16,8 @@ from master.goal import Goal
 #constants
 FPS = 10
 TILESIZE = 40
-MAP_WIDTH = 10
-MAP_HEIGHT = 10
+MAP_WIDTH = 20
+MAP_HEIGHT = 20
 
 #colours
 BLACK = (0,0,0)
@@ -26,64 +26,43 @@ RED = (200, 0, 0)
 GREEN = (0,200,0)
 BLUE = (0,0,200)
 
+#start the pygame library and create a clock module
 pygame.init()
 fpsClock = pygame.time.Clock()
 
-#images
+#load the images
 AGENT  = pygame.image.load('agent.bmp')
 FOOD = pygame.image.load('food.bmp')
 GOAL = pygame.image.load('goal.bmp')
 OBSTACLE = pygame.image.load('obstacle.bmp')
+#this dictionary allows to get the image for a known type
 images = {Agent:AGENT, Food:FOOD, Goal:GOAL, Obstacle:OBSTACLE}
 
 #set up display
 DISP_SURF = pygame.display.set_mode((MAP_WIDTH*TILESIZE, MAP_HEIGHT*TILESIZE))
-pygame.display.set_caption('tilemap')
+pygame.display.set_caption('World')
+
+#draws a Border of Obstacles around the world to prevent agents from leaving it
+def drawBorder():
+    #top and bottom
+    for x in range(MAP_WIDTH):
+        world.spawn(EntityType.Obstacle, x, 0)
+        world.spawn(EntityType.Obstacle, x, MAP_HEIGHT-1)
+    #left and right
+    for y in range(1, MAP_HEIGHT - 1):
+        world.spawn(EntityType.Obstacle, 0, y)
+        world.spawn(EntityType.Obstacle, MAP_WIDTH - 1, y)
 
 #initialize world
 world = World(MAP_WIDTH, MAP_HEIGHT)
+drawBorder()
 world.spawn(EntityType.Agent, 5, 5)
 world.spawn(EntityType.Agent, 5, 6)
-world.spawn(EntityType.Food, 7, 7)
-world.spawn(EntityType.Goal, 8, 8)
-world.spawn(EntityType.Obstacle, 0, 0)
-world.spawn(EntityType.Obstacle, 0, 1)
-world.spawn(EntityType.Obstacle, 0, 2)
-world.spawn(EntityType.Obstacle, 0, 3)
-world.spawn(EntityType.Obstacle, 0, 4)
-world.spawn(EntityType.Obstacle, 0, 5)
-world.spawn(EntityType.Obstacle, 0, 6)
-world.spawn(EntityType.Obstacle, 0, 7)
-world.spawn(EntityType.Obstacle, 0, 8)
-world.spawn(EntityType.Obstacle, 0, 9)
-world.spawn(EntityType.Obstacle, 9, 0)
-world.spawn(EntityType.Obstacle, 9, 1)
-world.spawn(EntityType.Obstacle, 9, 2)
-world.spawn(EntityType.Obstacle, 9, 3)
-world.spawn(EntityType.Obstacle, 9, 4)
-world.spawn(EntityType.Obstacle, 9, 5)
-world.spawn(EntityType.Obstacle, 9, 6)
-world.spawn(EntityType.Obstacle, 9, 7)
-world.spawn(EntityType.Obstacle, 9, 8)
-world.spawn(EntityType.Obstacle, 9, 9)
-world.spawn(EntityType.Obstacle, 1, 0)
-world.spawn(EntityType.Obstacle, 2, 0)
-world.spawn(EntityType.Obstacle, 3, 0)
-world.spawn(EntityType.Obstacle, 4, 0)
-world.spawn(EntityType.Obstacle, 5, 0)
-world.spawn(EntityType.Obstacle, 6, 0)
-world.spawn(EntityType.Obstacle, 7, 0)
-world.spawn(EntityType.Obstacle, 8, 0)
-world.spawn(EntityType.Obstacle, 1, 9)
-world.spawn(EntityType.Obstacle, 2, 9)
-world.spawn(EntityType.Obstacle, 3, 9)
-world.spawn(EntityType.Obstacle, 4, 9)
-world.spawn(EntityType.Obstacle, 5, 9)
-world.spawn(EntityType.Obstacle, 6, 9)
-world.spawn(EntityType.Obstacle, 7, 9)
-world.spawn(EntityType.Obstacle, 8, 9)
+world.spawn(EntityType.Food, 1, 1)
+world.spawn(EntityType.Goal, 1, 8)
 
-def Render():
+#draws the entities onto the grid
+def render():
     for row in world.entities:
         for entity in row:
             if (type(entity) != type(None)):
@@ -101,11 +80,10 @@ while True:
     DISP_SURF.fill(BLACK)
     for row in range(MAP_HEIGHT):
         for column in range(MAP_WIDTH):
-            #add a white square (drawing surface, colour, coordinates)
-            #the last parameter sets the border thickness
+            #add a white square (drawing surface, colour, coordinates, border thickness)
             pygame.draw.rect(DISP_SURF, WHITE, (column*TILESIZE, row*TILESIZE, TILESIZE,TILESIZE), 1)
     #update the display
     fpsClock.tick(FPS)
     world.update()
-    Render()
+    render()
     pygame.display.update()
