@@ -34,6 +34,7 @@ AGENT  = pygame.image.load('agent.bmp')
 FOOD = pygame.image.load('food.bmp')
 GOAL = pygame.image.load('goal.bmp')
 OBSTACLE = pygame.image.load('obstacle.bmp')
+images = {Agent:AGENT, Food:FOOD, Goal:GOAL, Obstacle:OBSTACLE}
 
 #set up display
 DISP_SURF = pygame.display.set_mode((MAP_WIDTH*TILESIZE, MAP_HEIGHT*TILESIZE))
@@ -49,15 +50,8 @@ world.spawn(EntityType.Obstacle, 3, 3)
 def Render():
     for row in world.entities:
         for entity in row:
-            print(type(entity))
-            if type(entity) is Agent:
-                DISP_SURF.blit(AGENT, (i * TILESIZE, j * TILESIZE))
-            if type(entity) is Food:
-                DISP_SURF.blit(FOOD, (i * TILESIZE, j * TILESIZE))
-            if type(entity) is Goal:
-                DISP_SURF.blit(GOAL, (i * TILESIZE, j * TILESIZE))
-            if type(entity) is Obstacle:
-                DISP_SURF.blit(OBSTACLE, (i * TILESIZE, j * TILESIZE))
+            if (type(entity) != type(None)):
+                DISP_SURF.blit(images[type(entity)], (entity.x * TILESIZE, entity.y * TILESIZE))
 
 #world loop
 while True:
