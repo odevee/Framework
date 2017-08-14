@@ -31,8 +31,9 @@ class World:
     def getSlice(self, x, y, radius):
         pass
     # Konflikt loesen
-    def breakTie(self):
-        pass
+    def breakTie(self, entity1, entity2, x, y):
+        entity1.x = x
+        entity1.y = y
     def moveEntity(self, x, y, xn, yn):
         pass
 
@@ -40,6 +41,20 @@ class World:
         for row in self.entities:
             for entity in row:
                 if (type(entity) != type(None)):
-                    print(type(entity))
-                    print("Es ist eine Entity")
                     entity.update()
+        self.entities_n = self.entities
+        for i in range(self.width):
+            for j in range(self.height):
+                entity = self.entities_n[i][j]
+                if (type(entity) != type(None)):
+                    if entity.x != i or entity.y != j:
+                        targetPosition = self.entities_n[entity.x][entity.y]
+                        if type(targetPosition) != type(None):
+                            if targetPosition.walkable:
+                                self.entities_n[entity.x][entity.y] = entity
+                                self.entities_n[i][j] = None
+                            else:
+                                self.breakTie(entity, targetPosition, i, j)
+                        else:
+                            self.entities_n[entity.x][entity.y] = entity
+                            self.entities_n[i][j] = None

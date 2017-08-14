@@ -10,5 +10,7 @@ class Agent(Entity):
     def update(self):
         print("Agent Update")
         tup = self.actuator.act(self.x, self.y)
+        self.x = tup[0]
+        self.y = tup[1]
 
 
