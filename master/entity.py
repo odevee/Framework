@@ -6,7 +6,7 @@ class Entity:
             self.x = x
             self.y = y
             self.walkable = walkable
-
+    # update function
+    # should be implemented by each child class of Entity
     def update(self):
-        #print("Update mit x = ", self.x, " und y = ", self.y)
         pass
