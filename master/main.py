@@ -31,10 +31,10 @@ pygame.init()
 fpsClock = pygame.time.Clock()
 
 #load the images
-AGENT  = pygame.image.load('agent.bmp')
-FOOD = pygame.image.load('food.bmp')
-GOAL = pygame.image.load('goal.bmp')
-OBSTACLE = pygame.image.load('obstacle.bmp')
+AGENT  = pygame.image.load('resources/agent.bmp')
+FOOD = pygame.image.load('resources/food.bmp')
+GOAL = pygame.image.load('resources/goal.bmp')
+OBSTACLE = pygame.image.load('resources/obstacle.bmp')
 #this dictionary allows to get the image for a known type
 images = {Agent:AGENT, Food:FOOD, Goal:GOAL, Obstacle:OBSTACLE}
 
