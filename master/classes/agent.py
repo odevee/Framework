@@ -1,6 +1,6 @@
-from entity import Entity
-from actuator import Actuator
-from sensor import Sensor
+from .entity import Entity
+from .actuator import Actuator
+from .sensor import Sensor
 # agent class
 class Agent(Entity):
 

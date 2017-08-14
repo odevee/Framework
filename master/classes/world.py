@@ -1,10 +1,11 @@
-from .agent import Agent
-from .food import Food
-from .obstacle import Obstacle
-from .goal import Goal
-from .entityType import EntityType
-from .entity import Entity
 import numpy as np
+
+from .entityType import EntityType
+from .agent import Agent
+from .entity import Entity
+from .food import Food
+from .goal import Goal
+from .obstacle import Obstacle
 
 
 # represents the world grid with all entities

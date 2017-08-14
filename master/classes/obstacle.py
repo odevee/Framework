@@ -1,4 +1,4 @@
-from poi import Poi
+from .poi import Poi
 
 class Obstacle(Poi):
     def __init__(self,x,y):

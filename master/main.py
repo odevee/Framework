@@ -5,13 +5,13 @@ import pygame, sys, random
 from pygame.locals import *
 
 #import classes
-from entity import Entity
-from world import World
-from entityType import EntityType
-from agent import Agent
-from food import Food
-from obstacle import Obstacle
-from goal import Goal
+from classes.entity import Entity
+from classes.world import World
+from classes.entityType import EntityType
+from classes.agent import Agent
+from classes.food import Food
+from classes.obstacle import Obstacle
+from classes.goal import Goal
 
 #constants
 FPS = 10
