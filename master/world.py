@@ -3,13 +3,16 @@ from .food import Food
 from .obstacle import Obstacle
 from .goal import Goal
 from .entityType import EntityType
+from .entity import Entity
+import numpy as np
 class World:
     def __init__(self, w, h):
         self.width = w
         self.height = h
 
     # Array mit Entities
-        self.entities = [[0 for x in range (w)] for y in range(h)]
+        #self.entities = [[0 for x in range (w)] for y in range(h)]
+        self.entities = np.empty((self.width, self.height), dtype=Entity)
         self.entities_n = self.entities
 
     # Spawns entities

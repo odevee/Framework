@@ -49,7 +49,7 @@ world.spawn(EntityType.Obstacle, 3, 3)
 def WorldRender():
     for i in range(MAP_HEIGHT):
         for j in range(MAP_WIDTH):
-            print("i=",i," j=", j)
+           # print("i=",i," j=", j)
             #if world.entities[i][j] != 0:
              #  print("Objekt gefunden", world.entities[i][j])
             #print(type(world.entities[i][j]))
@@ -79,11 +79,12 @@ while True:
             pygame.draw.rect(DISP_SURF, WHITE, (column*TILESIZE, row*TILESIZE, TILESIZE,TILESIZE), 1)
     #update the display
     fpsClock.tick(FPS)
-    for i in range(MAP_HEIGHT):
-        for j in range(MAP_WIDTH):
-            if isinstance(world.entities[i][j], Entity):
+    for row in world.entities:
+        for entity in row:
+            if (type(entity) != type(None)):
+                print(type(entity))
                 print("Es ist eine Entity")
-                tmp = world.entities[i][j]
-                Entity.update(world.entities[i][j])
+                entity.update()
+
     WorldRender()
     pygame.display.update()
