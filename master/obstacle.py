@@ -1,6 +1,5 @@
 from .poi import Poi
 
-class Obstacle(self):
-
+class Obstacle(Poi):
     def __init__(self,x,y):
-        Poi.__init__(self, x, y)
+        Poi.__init__(self, x, y, 0)

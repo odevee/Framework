@@ -1,11 +1,16 @@
 from .entity import Entity
 from .actuator import Actuator
 from .sensor import Sensor
-from .behaviour import Behaviour
-
-class agent:
+class Agent(Entity):
     def __init__(self, x, y):
         Entity.__init__(self, x, y)
         self.actuator = Actuator()
         self.sensor = Sensor()
-        self.behaviour = Behaviour()
+
+    def update(self):
+        print("Agent Update")
+        tup = self.actuator.act(self.x, self.y)
+        self.x = tup[0]
+        self.y = tup[1]
+
+
