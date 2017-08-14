@@ -1,4 +1,4 @@
-from .poi import Poi
+from poi import Poi
 # Goal as child class of Poi
 class Goal(Poi):
     # construct a Goal instance. x,y are the coords
