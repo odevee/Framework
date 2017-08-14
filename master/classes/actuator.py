@@ -1,5 +1,5 @@
 import random
-# Actuator eines Agenten. Diese Klasse enthält die spezifische Logik, nach welcher der Agent handeln soll
+# Aktuator eines Agenten. Diese Klasse enthält die spezifische Logik, nach welcher der Agent handeln soll
 # und soll über den Agenten mit den Sensorinformationen aufgerufen werden. Die restliche Struktur der Klasse ist
 # implementierungsspezifisch.
 class Actuator:
