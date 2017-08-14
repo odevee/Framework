@@ -43,6 +43,7 @@ pygame.display.set_caption('tilemap')
 #initialize world
 world = World(MAP_WIDTH, MAP_HEIGHT)
 world.spawn(EntityType.Agent, 5, 5)
+world.spawn(EntityType.Agent, 5, 6)
 world.spawn(EntityType.Food, 7, 7)
 world.spawn(EntityType.Goal, 8, 8)
 world.spawn(EntityType.Obstacle, 0, 0)
