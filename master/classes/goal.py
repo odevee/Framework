@@ -3,4 +3,4 @@ from .poi import Poi
 class Goal(Poi):
     # construct a Goal instance. x,y are the coords
     def __init__(self, x, y):
-        Poi.__init__(self, x, y)
+        Poi.__init__(self, x, y, walkable = True, deleteme = False)

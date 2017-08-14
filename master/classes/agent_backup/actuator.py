@@ -6,6 +6,7 @@ class Actuator:
     def __init__(self):
         pass
 
+
 # implementation of random walk: pick where to go (one step increment) or whether
 # to stay at random, and return intended future coordinates as tuple
 # THIS FUNCTION IS CALLED FROM agent.update()
