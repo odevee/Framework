@@ -5,37 +5,37 @@ import pygame, sys, random
 from pygame.locals import *
 
 #import classes
-from classes.entity import Entity
-from classes.world import World
+from classes.entity     import Entity
+from classes.world      import World
 from classes.entityType import EntityType
-from classes.agent import Agent
-from classes.food import Food
-from classes.obstacle import Obstacle
-from classes.goal import Goal
+from classes.agent      import Agent
+from classes.food       import Food
+from classes.obstacle   import Obstacle
+from classes.goal       import Goal
 
 #constants
-FPS = 10
-TILESIZE = 40
-MAP_WIDTH = 20
+FPS        = 10
+TILESIZE   = 40
+MAP_WIDTH  = 20
 MAP_HEIGHT = 20
 
 #colours
-BLACK = (0,0,0)
-WHITE = (255,255,255)
-RED = (200, 0, 0)
-GREEN = (0,200,0)
-BLUE = (0,0,200)
+BLACK  = (0,0,0)
+WHITE  = (255,255,255)
+RED    = (200, 0, 0)
+GREEN  = (0,200,0)
+BLUE   = (0,0,200)
 
 #start the pygame library and create a clock module
 pygame.init()
 fpsClock = pygame.time.Clock()
 
 #load the images
-AGENT  = pygame.image.load('resources/agent.bmp')
-FOOD = pygame.image.load('resources/food.bmp')
-GOAL = pygame.image.load('resources/goal.bmp')
+AGENT    = pygame.image.load('resources/agent.bmp')
+FOOD     = pygame.image.load('resources/food.bmp')
+GOAL     = pygame.image.load('resources/goal.bmp')
 OBSTACLE = pygame.image.load('resources/obstacle.bmp')
-#this dictionary allows to get the image for a known type
+#this dictionary allows searching for the pertinent image by type
 images = {Agent:AGENT, Food:FOOD, Goal:GOAL, Obstacle:OBSTACLE}
 
 #set up display
