@@ -16,7 +16,7 @@ class Actuator:
             x = x
             y = y + 1
         # or go down...
-        elif r == "down":
+        elif r == "down":   
             x = x
             y = y - 1
         # or go right ...
