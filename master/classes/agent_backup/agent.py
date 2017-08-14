@@ -1,7 +1,6 @@
 from .entity import Entity
 from .actuator import Actuator
 from .sensor import Sensor
-from .behavior import Behavior
 # agent class
 class Agent(Entity):
 
@@ -10,7 +9,6 @@ class Agent(Entity):
         Entity.__init__(self, x, y, 0)
         self.actuator = Actuator()
         self.sensor = Sensor()
-        self.behavior = Behavior()
 
     # updates agents
     # future functionality:
