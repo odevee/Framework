@@ -33,3 +33,13 @@ class World:
     # Konflikt loesen
     def breakTie(self):
         pass
+    def moveEntity(self, x, y, xn, yn):
+        pass
+
+    def update(self):
+        for row in self.entities:
+            for entity in row:
+                if (type(entity) != type(None)):
+                    print(type(entity))
+                    print("Es ist eine Entity")
+                    entity.update()
