@@ -12,8 +12,6 @@ class Agent(Entity):
     # updates agents
     # (should later call Sensor and Actuator
     def update(self):
-        tup = self.actuator.act(self.x, self.y)
+        tup = self.actuator.randomwalk(self.x, self.y)
         self.x = tup[0]
         self.y = tup[1]
-
-
