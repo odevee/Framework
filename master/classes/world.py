@@ -19,11 +19,11 @@ class World:
         self.entities_n = self.entities
 
     # spawns entities
-    def spawn(self, entityType, x, y):
+    def spawn(self, entityType, x, y, kind = 0, perishable = False, lifetime = 5, existence = 0):
         if entityType == EntityType.Agent:
             self.entities[x][y] = Agent(x, y)
         elif entityType == EntityType.Food:
-            self.entities[x][y] = Food(x, y)
+            self.entities[x][y] = Food(x, y, kind, perishable, lifetime, existence)
         elif entityType == EntityType.Goal:
             self.entities[x][y] = Goal(x, y)
         elif entityType == EntityType.Obstacle:
@@ -42,11 +42,15 @@ class World:
         entity1.x = x
         entity1.y = y
 
-    # moves entity through the world
+    # moves entities through the world
     def moveEntity(self, entity, x, y, xn, yn):
         # copy entity to new position
         self.entities_n[xn][yn] = entity
         # delete entity at old position
+        self.entities_n[x][y] = None
+
+    # deletes entities from world
+    def delEntity(self, entity, x, y):
         self.entities_n[x][y] = None
 
     # updates all entities and the world grid
@@ -58,11 +62,15 @@ class World:
                     entity.update()
         # copy the world grid
         self.entities_n = self.entities
-        # move all entities in the grid copy
+        # modify all entities in the grid copy
         for x in range(self.width):
             for y in range(self.height):
-                # entity which wants to move
+                # entity which wants to be modified
                 entity = self.entities_n[x][y]
+                # delete entities that want to be deleted
+                if (type(entity) != type(None) and entity.deleteme):
+                    self.delEntity(entity, x, y)
+                # other modifications
                 if (type(entity) != type(None)):
                     # coordinates, which the entity wants to move to
                     xn = entity.x
