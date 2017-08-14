@@ -6,7 +6,7 @@ class Agent(Entity):
 
     #constructs an agent with x,y coordinates and instantiates an Actuator and a Sensor
     def __init__(self, x, y):
-        Entity.__init__(self, x, y, walkable = 0, deleteme = False)
+        Entity.__init__(self, x, y, walkable = False, deleteme = False)
         self.actuator = Actuator()
         self.sensor = Sensor()
 

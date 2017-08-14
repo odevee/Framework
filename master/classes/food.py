@@ -6,9 +6,9 @@ class Food(Poi):
                  x,                     # coordinates x ...
                  y,                     # ... and y
                  kind = 0,              # a kind (with a default value)
-                 perishable = False,            # whether it's perishables
-                 lifetime = 5,              # a lifetime (relevant if perishable)
-                 existence = 0        ):   # duration of existence so far
+                 perishable = False,    # whether it's perishables
+                 lifetime = 5,          # a lifetime (relevant if perishable)
+                 existence = 0     ):   # duration of existence so far
         Poi.__init__(self, x, y)
         self.kind       = kind
         self.perishable = perishable

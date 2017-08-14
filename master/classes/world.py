@@ -42,13 +42,14 @@ class World:
         entity1.x = x
         entity1.y = y
 
-    # moves entity through the world
+    # moves entities through the world
     def moveEntity(self, entity, x, y, xn, yn):
         # copy entity to new position
         self.entities_n[xn][yn] = entity
         # delete entity at old position
         self.entities_n[x][y] = None
 
+    # deletes entities from world
     def delEntity(self, entity, x, y):
         self.entities_n[x][y] = None
 
