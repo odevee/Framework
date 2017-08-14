@@ -1,9 +1,9 @@
-from .agent import Agent
-from .food import Food
-from .obstacle import Obstacle
-from .goal import Goal
-from .entityType import EntityType
-from .entity import Entity
+from agent import Agent
+from food import Food
+from obstacle import Obstacle
+from goal import Goal
+from entityType import EntityType
+from entity import Entity
 import numpy as np
 
 
