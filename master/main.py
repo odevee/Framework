@@ -47,16 +47,16 @@ world.spawn(EntityType.Goal, 9, 9)
 world.spawn(EntityType.Obstacle, 3, 3)
 
 def Render():
-    for i in range(MAP_HEIGHT):
-        for j in range(MAP_WIDTH):
-            #print("i=",i," j=", j)
-            if type(world.entities[i][j]) is Agent:
+    for row in world.entities:
+        for entity in row:
+            print(type(entity))
+            if type(entity) is Agent:
                 DISP_SURF.blit(AGENT, (i * TILESIZE, j * TILESIZE))
-            if type(world.entities[i][j]) is Food:
+            if type(entity) is Food:
                 DISP_SURF.blit(FOOD, (i * TILESIZE, j * TILESIZE))
-            if type(world.entities[i][j]) is Goal:
+            if type(entity) is Goal:
                 DISP_SURF.blit(GOAL, (i * TILESIZE, j * TILESIZE))
-            if type(world.entities[i][j]) is Obstacle:
+            if type(entity) is Obstacle:
                 DISP_SURF.blit(OBSTACLE, (i * TILESIZE, j * TILESIZE))
 
 #world loop
