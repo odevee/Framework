@@ -5,6 +5,7 @@ import pygame, sys, random
 from pygame.locals import *
 
 #import classes
+#ignore warnings - it works!
 from classes.entity     import Entity
 from classes.world      import World
 from classes.entityType import EntityType
@@ -39,8 +40,9 @@ OBSTACLE = pygame.image.load('resources/obstacle.bmp')
 images = {Agent:AGENT, Food:FOOD, Goal:GOAL, Obstacle:OBSTACLE}
 
 #set up display
-DISP_SURF = pygame.display.set_mode((MAP_WIDTH*TILESIZE, MAP_HEIGHT*TILESIZE))
-pygame.display.set_caption('World')
+DISP_SURF = pygame.display.set_mode((MAP_WIDTH*TILESIZE, MAP_HEIGHT*TILESIZE), pygame.NOFRAME)
+#pygame.display.set_caption('World')
+#pygame.display.set_icon(AGENT)
 
 #draws a Border of Obstacles around the world to prevent agents from leaving it
 def drawBorder():

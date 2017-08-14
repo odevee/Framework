@@ -22,7 +22,7 @@ class World:
     # can be passed any kwd-argument of any type of entity
     def spawn(self, entityType, x, y, kind = 0, perishable = False, lifetime = 5, existence = 0):
         if entityType == EntityType.Agent:
-            self.entities[x][y] = Agent(x, y)
+            self.entities[x][y] = Agent(x, y, self.entities)
         elif entityType == EntityType.Food:
             self.entities[x][y] = Food(x, y, kind, perishable, lifetime, existence)
         elif entityType == EntityType.Goal:
