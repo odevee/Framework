@@ -27,3 +27,29 @@ class Actuator:
             x = x
             y = y
         return (x, y)
+
+# returns True if a set of coordinates lies outside the map
+    def outofWorld(x,y):
+        if x < 0 or x > MAP_WIDTH or y < 0 or y > MAP_HEIGHT:
+            return True
+
+# Funktion noch UNGETESTET: sollte die Anzahl Zugmöglichkeiten in n Zügen iterativ bestimmen
+    def EMP_optionCounter(steps, x, y, sensorinfo):
+        stepnum = steps
+        accessible_coord = [(x,y)]
+        checked = []
+        mov_equivs = {"up"    :(x,y+1),
+                      "down"  :(x,y-1),
+                      "left"  :(x-1,y),
+                      "right" :(x+1,y)  }
+        while stepnum > 0:
+            for field in accessible_coord:
+                if field not in checked:
+                    for name, coord in mov_equivs:
+                        if not outofWorld(coord[0], coord[1])
+                           and ( sensorinfo[coord[0]][coord[1]].walkable
+                           or    type(sensorinfo[coord[0]][coord[1]]) == None ):
+                            accessible_coord.append(coord)
+                checked.append(field)
+            stepnum -= 1
+        return len(set(accessible_coord))

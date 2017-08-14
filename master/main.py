@@ -1,3 +1,16 @@
+#constants
+FPS        = 10
+TILESIZE   = 40
+MAP_WIDTH  = 20
+MAP_HEIGHT = 20
+
+#colours
+BLACK  = (0,0,0)
+WHITE  = (255,255,255)
+RED    = (200, 0, 0)
+GREEN  = (0,200,0)
+BLUE   = (0,0,200)
+
 #import modules
 import pygame, sys, random
 
@@ -13,19 +26,6 @@ from classes.agent      import Agent
 from classes.food       import Food
 from classes.obstacle   import Obstacle
 from classes.goal       import Goal
-
-#constants
-FPS        = 10
-TILESIZE   = 40
-MAP_WIDTH  = 20
-MAP_HEIGHT = 20
-
-#colours
-BLACK  = (0,0,0)
-WHITE  = (255,255,255)
-RED    = (200, 0, 0)
-GREEN  = (0,200,0)
-BLUE   = (0,0,200)
 
 #start the pygame library and create a clock module
 pygame.init()
