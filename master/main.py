@@ -59,10 +59,10 @@ def drawBorder():
 world = World(MAP_WIDTH, MAP_HEIGHT)
 drawBorder()
 world.spawn(EntityType.Agent, 5, 5)
-world.spawn(EntityType.Agent, 5, 6)
-world.spawn(EntityType.Food, 1, 1)
-world.spawn(EntityType.Food, 10, 10, perishable=True, lifetime=50)
-world.spawn(EntityType.Goal, 1, 8)
+#world.spawn(EntityType.Agent, 5, 6)
+#world.spawn(EntityType.Food, 1, 1)
+#world.spawn(EntityType.Food, 10, 10, perishable=True, lifetime=50)
+#world.spawn(EntityType.Goal, 1, 8)
 
 #draws the entities onto the grid
 def render():
