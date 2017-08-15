@@ -58,27 +58,49 @@ class Actuator:
         m = len(slice[0])
         if x < 0 or x >=n or y < 0 or y >= m:
             return
-        if range == 0:
+        if range == -1:
             return
-        neighbours += {x,y}
-        neighbours = neighbours + self.getNeighbours(self, slice, x + 1, y, range - 1, neighbours)
-        neighbours = neighbours + self.getNeighbours(self, slice, x - 1, y, range - 1, neighbours)
-        neighbours = neighbours + self.getNeighbours(self, slice, x, y + 1, range - 1, neighbours)
-        neighbours = neighbours + self.getNeighbours(self, slice, x, y - 1, range - 1, neighbours)
+        if (type(slice[x][y]) == type(None) or slice[x][y].walkable == True):
+            neighbours.add((x,y))
+        #else:
+         #   return
+        self.getNeighbours(slice, x + 1, y, range - 1, neighbours)
+        self.getNeighbours(slice, x - 1, y, range - 1, neighbours)
+        self.getNeighbours(slice, x, y + 1, range - 1, neighbours)
+        self.getNeighbours(slice, x, y - 1, range - 1, neighbours)
+
         return neighbours
 
 
     def getAction(self, slice, x, y):
-        #self.calcEMP(slice, x, y)
-        neighbours = {{x,y}}
-        self.getNeighbours(self, slice, x, y, self.think_range, neighbours)
-
-
+        n = len(slice)
+        m = len(slice)
+        self.slice = np.empty((n, m), dtype=Entity)     # array of all entities in the world ...
+        # find direct neighbours
+        direct_neighbours = {(x,y)}
+        self.getNeighbours(slice, x, y, self.range, direct_neighbours)
+        # calculate empowerment
+        target = (x, y)
+        emp_max = -1
+        for n in direct_neighbours:
+            emp = self.calcEMP(slice, n[0], n[1])
+            if emp > emp_max:
+                emp_max = emp
+                target = (n[0], n[1])
+            elif emp == emp_max:
+                pass # find solution later
+        return target
 
 
 
     def calcEMP(self, slice, x, y):
-        pass
+        neighbours = {(x,y)}
+        self.getNeighbours(slice, x, y, self.think_range, neighbours)
+        return len(neighbours)
+
+
+
+
 
 """"
 # Funktion noch UNGETESTET: sollte die Anzahl Zugmöglichkeiten in n Zügen iterativ bestimmen
