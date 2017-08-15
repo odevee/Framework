@@ -56,8 +56,8 @@ images = {Agent: AGENT, Food: FOOD, Goal: GOAL, Obstacle: OBSTACLE}
 
 # initialize world
 world = World()
-world.loadMap('resources/maps/face.txt')
-world.spawn(EntityType.Agent, 1, 1)
+world.loadMap('resources/maps/maze.txt')
+world.spawn(EntityType.Agent, 17, 9)
 
 # set up display
 DISP_SURF = pygame.display.set_mode((world.width * TILESIZE, world.height * TILESIZE), pygame.NOFRAME)
@@ -68,7 +68,7 @@ def render():
     for line in world.entities:
         for entity in line:
             if isinstance(entity, Entity):
-                DISP_SURF.blit(images[type(entity)], (entity.x * TILESIZE, entity.y * TILESIZE))
+                DISP_SURF.blit(pygame.transform.scale(images[type(entity)], (TILESIZE, TILESIZE)), (entity.x * TILESIZE, entity.y * TILESIZE))
 
 # world loop
 hold = False
