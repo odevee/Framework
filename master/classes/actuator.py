@@ -1,7 +1,7 @@
 import random
 import numpy as np
 
-from classes.entity     import Entity
+from classes.entity import Entity
 
 # Aktuator eines Agenten. Diese Klasse enthält die spezifische Logik, nach welcher der Agent handeln soll
 # und soll über den Agenten mit den Sensorinformationen aufgerufen werden. Die restliche Struktur der Klasse ist
@@ -19,26 +19,22 @@ class Actuator:
     def randomwalk(self, x, y):
         r = random.choice(["up", "down", "left", "right", "stay"]) # pick where to go
         if r == "up":           # go up ...
-            x = x
-            y = y + 1
+            y += 1
         elif r == "down":       # or go down...
-            x = x
-            y = y - 1
+            y -= 1
         elif r == "right":      # or go right ...
-            x = x + 1
-            y = y
+            x += 1
         elif r == "left":       # or go left
-            x = x - 1
-            y = y
+            x -= 1
         elif r == "stay":       # or stay where you are
-            x = x
-            y = y
+            pass
         return (x, y)
 
 # returns True if a set of coordinates lies outside the map
-    def outofWorld(x,y):
+    def outOfWorld(x,y):
         #if x < 0 or x > MAP_WIDTH or y < 0 or y > MAP_HEIGHT:
             return True
+
 
 # returns all coordinates THEORETICALLY accessible from a given point
     def accessibleCoord(steps, x, y):
@@ -53,76 +49,68 @@ class Actuator:
              steps -= 1
          return list(set(poss_coord))
 
-    def getNeighbours(self, slice, x, y, range, neighbours):
+
+# returns all the neighbours, that are reachable within range steps form the current position
+    def getNeighbours(self, slice, xa, ya, x, y, range, neighbours):
         n = len(slice)
         m = len(slice[0])
-        if x < 0 or x >=n or y < 0 or y >= m:
+        if x < 0 or x >= n or y < 0 or y >= m:
             return
         if range == -1:
             return
-        if (type(slice[x][y]) == type(None) or slice[x][y].walkable == True):
-            neighbours.add((x,y))
-        #else:
-         #   return
-        self.getNeighbours(slice, x + 1, y, range - 1, neighbours)
-        self.getNeighbours(slice, x - 1, y, range - 1, neighbours)
-        self.getNeighbours(slice, x, y + 1, range - 1, neighbours)
-        self.getNeighbours(slice, x, y - 1, range - 1, neighbours)
+        if type(slice[x][y]) == type(None) or slice[x][y].walkable == True or (x, y) == (xa, ya):
+            #print(slice[x][y], self)
+            neighbours.add((x, y))
+            self.getNeighbours(slice, xa, ya, x + 1, y, range - 1, neighbours)
+            self.getNeighbours(slice, xa, ya, x - 1, y, range - 1, neighbours)
+            self.getNeighbours(slice, xa, ya, x, y + 1, range - 1, neighbours)
+            self.getNeighbours(slice, xa, ya, x, y - 1, range - 1, neighbours)
 
         return neighbours
 
 
+    def getDirectNeighbours(self, slice, xa, ya, x, y, range, neighbours):
+        n = len(slice)
+        m = len(slice[0])
+        if x < 0 or x >= n or y < 0 or y >= m:
+            return
+        neighbours.add((x, y))
+        self.getNeighbours(slice, xa, ya, x + 1, y, range - 1, neighbours)
+        self.getNeighbours(slice, xa, ya, x - 1, y, range - 1, neighbours)
+        self.getNeighbours(slice, xa, ya, x, y + 1, range - 1, neighbours)
+        self.getNeighbours(slice, xa, ya, x, y - 1, range - 1, neighbours)
+        return neighbours
+
+
+# decides where to go based on empowerment
     def getAction(self, slice, x, y):
         n = len(slice)
         m = len(slice)
-        self.slice = np.empty((n, m), dtype=Entity)     # array of all entities in the world ...
+        # array of all entities in the world ...
+        self.slice = np.empty((n, m), dtype=Entity)
         # find direct neighbours
         direct_neighbours = {(x,y)}
-        self.getNeighbours(slice, x, y, self.range, direct_neighbours)
+        self.getDirectNeighbours(slice, x, y, x, y, self.range, direct_neighbours)
+        print('Position:', x, y)
+        print('Neighbours: ', direct_neighbours)
         # calculate empowerment
         target = (x, y)
         emp_max = -1
         for n in direct_neighbours:
-            emp = self.calcEMP(slice, n[0], n[1])
+            emp = self.calcEMP(slice, x, y, n[0], n[1])
+            print('Empowerment at ', n[0], n[1], emp)
             if emp > emp_max:
                 emp_max = emp
                 target = (n[0], n[1])
             elif emp == emp_max:
                 pass # find solution later
+        #print(target)
         return target
 
 
-
-    def calcEMP(self, slice, x, y):
+# calculates the empowerment of given position in the world slice
+    def calcEMP(self, slice, xa, ya, x, y):
         neighbours = {(x,y)}
-        self.getNeighbours(slice, x, y, self.think_range, neighbours)
+        self.getNeighbours(slice, xa, ya, x, y, self.think_range, neighbours)
+        print('far neighbours: ', neighbours)
         return len(neighbours)
-
-
-
-
-
-""""
-# Funktion noch UNGETESTET: sollte die Anzahl Zugmöglichkeiten in n Zügen iterativ bestimmen
-    def EMP_optionCounter(steps, x, y, sensorinfo):
-        stepnum = steps
-        accessible_coord = [(x,y)]
-        checked = []
-        mov_equivs = {"up"    :(x,y+1),
-                      "down"  :(x,y-1),
-                      "left"  :(x-1,y),
-                      "right" :(x+1,y)  }
-        while stepnum > 0:
-            for field in accessible_coord:
-                if field not in checked:
-                    for name, coord in mov_equivs:
-                        if not outofWorld(coord[0], coord[1])
-                           and ( sensorinfo[coord[0]][coord[1]].walkable
-                           or    type(sensorinfo[coord[0]][coord[1]]) == None ):
-                            accessible_coord.append(coord)
-                checked.append(field)
-            stepnum -= 1
-        return len(set(accessible_coord))
-
-"""
-

@@ -11,12 +11,41 @@ from .obstacle   import Obstacle
 # define the class "World": represents the world grid with all entities
 class World:
     # constructor
-    def __init__(self, width, height):
-        (self.width, self.height) = width, height                   # define width and height
-        self.entities = np.empty((width, height), dtype=Entity)     # array of all entities in the world ...
-        self.entities_n = self.entities                             # ... and a copy of the array
+    def __init__(self):
+        #(self.width, self.height) = width, height                   # define width and height
+        #self.entities = np.empty((width, height), dtype=Entity)     # array of all entities in the world ...
+        #self.entities_n = self.entities                             # ... and a copy of the array
         # note: entities_n is used as a way to specify entitiy-modification intent
         #       during world updates, to do conflict management
+        pass
+
+    #loads a map from the specified map-file, given path
+    def loadMap(self, path):
+        with open(path, 'r') as f:
+            lines = [line.replace('\n','') for line in f]
+            self.width = len(lines[0])
+            self.height = len(lines)
+            self.entities = np.empty((self.width, self.height), dtype=Entity)
+            for x in range(self.width):
+                for y in range(self.height):
+                    char = lines[y][x]
+                    if char != ' ':
+                        self.spawn(EntityType(int(char)), x, y)
+            self.entities_n = self.entities
+
+    # saves the current world state as map-file, given path
+    def saveMap(self, path):
+        output = open(path, "w")
+        for column in self.entities.T:
+            for entity in column:
+                typename = type(entity).__name__
+                if typename != "NoneType":
+                    num_to_write = EntityType[typename].value
+                    output.write(str(num_to_write))
+                else:
+                    output.write(" ")
+            output.write("\n")
+        output.close()
 
     # spawns entities by creating and putting them into the entities-array;
     # can be passed any kwd-argument of any type of entity

@@ -1,15 +1,15 @@
 from .entity import Entity
 from .actuator import Actuator
 from .sensor import Sensor
-from .poi import Poi
 from .behavior import Behavior
+
+
 # agent class
 class Agent(Entity):
-
-    #constructs an agent with x,y coordinates and instantiates an Actuator and a Sensor
+    # constructs an agent with x,y coordinates and instantiates an Actuator and a Sensor
     def __init__(self, x, y, entities):
-        Entity.__init__(self, x, y, walkable = False, deleteme = False)
-        self.actuator = Actuator(3)
+        Entity.__init__(self, x, y, walkable=False, deleteme=False)
+        self.actuator = Actuator(5)
         self.sensor = Sensor(entities)
         self.behavior = Behavior()
 
@@ -33,4 +33,3 @@ class Agent(Entity):
         tup = self.actuator.getAction(slice, self.x, self.y)
         self.x = tup[0]
         self.y = tup[1]
-        #print(neighbors)
