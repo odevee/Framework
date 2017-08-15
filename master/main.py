@@ -57,7 +57,7 @@ images = {Agent: AGENT, Food: FOOD, Goal: GOAL, Obstacle: OBSTACLE}
 # initialize world
 world = World()
 world.loadMap('resources/maps/face.txt')
-world.spawn(EntityType.Agent, 17, 9)
+world.spawn(EntityType.Agent, 8, 7)
 
 # set up display
 DISP_SURF = pygame.display.set_mode((world.width * TILESIZE, world.height * TILESIZE), pygame.NOFRAME)
