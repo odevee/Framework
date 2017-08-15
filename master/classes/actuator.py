@@ -33,6 +33,10 @@ class Actuator:
         if x < 0 or x > MAP_WIDTH or y < 0 or y > MAP_HEIGHT:
             return True
 
+    def accessibleCoord(x,y):
+        pass
+
+""""
 # Funktion noch UNGETESTET: sollte die Anzahl Zugmöglichkeiten in n Zügen iterativ bestimmen
     def EMP_optionCounter(steps, x, y, sensorinfo):
         stepnum = steps
@@ -53,3 +57,5 @@ class Actuator:
                 checked.append(field)
             stepnum -= 1
         return len(set(accessible_coord))
+
+"""
