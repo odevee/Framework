@@ -19,7 +19,7 @@ class World:
         #       during world updates, to do conflict management
         pass
 
-    #loads a map from the specified map-file
+    #loads a map from the specified map-file, given path
     def loadMap(self, path):
         with open(path, 'r') as f:
             lines = [line.replace('\n','') for line in f]
@@ -32,6 +32,20 @@ class World:
                     if char != ' ':
                         self.spawn(EntityType(int(char)), x, y)
             self.entities_n = self.entities
+
+    # saves the current world state as map-file, given path
+    def saveMap(self, path):
+        output = open(path, "w")
+        for column in self.entities.T:
+            for entity in column:
+                typename = type(entity).__name__
+                if typename != "NoneType":
+                    num_to_write = EntityType[typename].value
+                    output.write(str(num_to_write))
+                else:
+                    output.write(" ")
+            output.write("\n")
+        output.close()
 
     # spawns entities by creating and putting them into the entities-array;
     # can be passed any kwd-argument of any type of entity
