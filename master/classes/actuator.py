@@ -96,16 +96,24 @@ class Actuator:
         # calculate empowerment
         target = (x, y)
         emp_max = -1
+        maxs = [(x,y)]
         for n in direct_neighbours:
             emp = self.calcEMP(slice, x, y, n[0], n[1])
             print('Empowerment at ', n[0], n[1], emp)
             if emp > emp_max:
                 emp_max = emp
                 target = (n[0], n[1])
+                # in case of a new max emp: refresh max set
+                maxs = [(n[0], n[1])]
+            # in case of equality: append all the cords with equal emp
             elif emp == emp_max:
-                pass # find solution later
-        #print(target)
-        return target
+                maxs.append((n[0], n[1]))
+        # find random max with laplace
+        n = len(maxs)
+        print(n)
+        l = random.randint(0,n-1)
+
+        return maxs.__getitem__(l)
 
 
 # calculates the empowerment of given position in the world slice

@@ -9,7 +9,7 @@ class Agent(Entity):
     # constructs an agent with x,y coordinates and instantiates an Actuator and a Sensor
     def __init__(self, x, y, entities):
         Entity.__init__(self, x, y, walkable=False, deleteme=False)
-        self.actuator = Actuator(5)
+        self.actuator = Actuator(6)
         self.sensor = Sensor(entities)
         self.behavior = Behavior()
 
