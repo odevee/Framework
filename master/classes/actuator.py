@@ -33,8 +33,20 @@ class Actuator:
         if x < 0 or x > MAP_WIDTH or y < 0 or y > MAP_HEIGHT:
             return True
 
-    def accessibleCoord(x,y):
-        pass
+# returns all coordinates THEORETICALLY accessible from a given point
+     def accessibleCoord(steps, x, y):
+         poss_coord=[]
+         while steps >= 0:
+             for i in range(steps+1):
+                 poss_coord.extend( [ (x+i , y+(steps-i)),
+                                      (x-i , y-(steps-i)),
+                                      (x+i , y-(steps-i)),
+                                      (x-i , y+(steps-i))
+                                     ] )
+             steps -= 1
+         return list(set(poss_coord))
+
+
 
     def getAction(self, slice, x, y):
         self.calcEMP(slice, x, y)
