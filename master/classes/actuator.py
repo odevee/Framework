@@ -50,6 +50,7 @@ class Actuator:
 
 """"
 # Funktion noch UNGETESTET: sollte die Anzahl Zugmöglichkeiten in n Zügen iterativ bestimmen
+# nach dem was Polani geagt hat wahrscheinlich pointless
     def EMP_optionCounter(steps, x, y, sensorinfo):
         stepnum = steps
         accessible_coord = [(x,y)]
