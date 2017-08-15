@@ -1,8 +1,14 @@
 # import modules
 import pygame
 import sys
+import os
 # import some useful constants
 from pygame.locals import *
+
+# open window at specified position
+#position = (0, 0)
+#os.environ['SDL_VIDEO_WINDOW_POS'] = str(position[0]) + "," + str(position[1])
+os.environ['SDL_VIDEO_CENTERED'] = '1'
 
 # constants
 FPS = 10
@@ -50,8 +56,8 @@ images = {Agent: AGENT, Food: FOOD, Goal: GOAL, Obstacle: OBSTACLE}
 
 # initialize world
 world = World()
-world.loadMap('resources/maps/maze.txt')
-world.spawn(EntityType.Agent, 1, 1)
+world.loadMap('resources/maps/face.txt')
+world.spawn(EntityType.Agent, 17, 9)
 
 # set up display
 DISP_SURF = pygame.display.set_mode((world.width * TILESIZE, world.height * TILESIZE), pygame.NOFRAME)
