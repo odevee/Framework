@@ -1,8 +1,8 @@
 #constants
 FPS        = 10
 TILESIZE   = 40
-MAP_WIDTH  = 20
-MAP_HEIGHT = 20
+#MAP_WIDTH  = 20
+#MAP_HEIGHT = 20
 
 #colours
 BLACK  = (0,0,0)
@@ -40,7 +40,7 @@ OBSTACLE = pygame.image.load('resources/obstacle.bmp')
 images = {Agent:AGENT, Food:FOOD, Goal:GOAL, Obstacle:OBSTACLE}
 
 #set up display
-DISP_SURF = pygame.display.set_mode((MAP_WIDTH*TILESIZE, MAP_HEIGHT*TILESIZE), pygame.NOFRAME)
+#DISP_SURF = pygame.display.set_mode((MAP_WIDTH*TILESIZE, MAP_HEIGHT*TILESIZE), pygame.NOFRAME)
 #pygame.display.set_caption('World')
 #pygame.display.set_icon(AGENT)
 
@@ -56,9 +56,11 @@ def drawBorder():
         world.spawn(EntityType.Obstacle, MAP_WIDTH - 1, y)
 
 #initialize world
-world = World(MAP_WIDTH, MAP_HEIGHT)
-drawBorder()
-world.spawn(EntityType.Agent, 5, 5)
+world = World()
+world.loadMap('resources/maps/barbell.txt')
+DISP_SURF = pygame.display.set_mode((world.width * TILESIZE, world.height * TILESIZE), pygame.NOFRAME)
+#drawBorder()
+world.spawn(EntityType.Agent, 1, 1)
 #world.spawn(EntityType.Agent, 5, 6)
 #world.spawn(EntityType.Food, 1, 1)
 #world.spawn(EntityType.Food, 10, 10, perishable=True, lifetime=50)
@@ -81,8 +83,8 @@ while True:
             sys.exit()
     #draw grid
     DISP_SURF.fill(BLACK)
-    for row in range(MAP_HEIGHT):
-        for column in range(MAP_WIDTH):
+    for row in range(world.height):
+        for column in range(world.width):
             #add a white square (drawing surface, colour, coordinates, border thickness)
             pygame.draw.rect(DISP_SURF, WHITE, (column*TILESIZE, row*TILESIZE, TILESIZE,TILESIZE), 1)
     #update the display
