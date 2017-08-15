@@ -1,10 +1,17 @@
 import random
+import numpy as np
+
+from classes.entity     import Entity
+
 # Aktuator eines Agenten. Diese Klasse enthält die spezifische Logik, nach welcher der Agent handeln soll
 # und soll über den Agenten mit den Sensorinformationen aufgerufen werden. Die restliche Struktur der Klasse ist
 # implementierungsspezifisch.
 class Actuator:
-    def __init__(self, steps):
-        self.steps = steps
+    def __init__(self, think_range, range = 1):
+        self.range = range
+        self.think_range = think_range
+        #self. slice =  np.empty(dtype=Entity)
+
 
 # implementation of random walk: pick where to go (one step increment) or whether
 # to stay at random, and return intended future coordinates as tuple
@@ -30,11 +37,11 @@ class Actuator:
 
 # returns True if a set of coordinates lies outside the map
     def outofWorld(x,y):
-        if x < 0 or x > MAP_WIDTH or y < 0 or y > MAP_HEIGHT:
+        #if x < 0 or x > MAP_WIDTH or y < 0 or y > MAP_HEIGHT:
             return True
 
 # returns all coordinates THEORETICALLY accessible from a given point
-     def accessibleCoord(steps, x, y):
+    def accessibleCoord(steps, x, y):
          poss_coord=[]
          while steps >= 0:
              for i in range(steps+1):
@@ -46,10 +53,28 @@ class Actuator:
              steps -= 1
          return list(set(poss_coord))
 
+    def getNeighbours(self, slice, x, y, range, neighbours):
+        n = len(slice)
+        m = len(slice[0])
+        if x < 0 or x >=n or y < 0 or y >= m:
+            return
+        if range == 0:
+            return
+        neighbours += {x,y}
+        neighbours = neighbours + self.getNeighbours(self, slice, x + 1, y, range - 1, neighbours)
+        neighbours = neighbours + self.getNeighbours(self, slice, x - 1, y, range - 1, neighbours)
+        neighbours = neighbours + self.getNeighbours(self, slice, x, y + 1, range - 1, neighbours)
+        neighbours = neighbours + self.getNeighbours(self, slice, x, y - 1, range - 1, neighbours)
+        return neighbours
 
 
     def getAction(self, slice, x, y):
-        self.calcEMP(slice, x, y)
+        #self.calcEMP(slice, x, y)
+        neighbours = {{x,y}}
+        self.getNeighbours(self, slice, x, y, self.think_range, neighbours)
+
+
+
 
 
     def calcEMP(self, slice, x, y):

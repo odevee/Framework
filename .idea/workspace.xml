@@ -3,9 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="df5d7c02-1190-49af-9dec-019a99c4261a" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/master/classes/actuator.py" afterPath="$PROJECT_DIR$/master/classes/actuator.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/master/classes/agent.py" afterPath="$PROJECT_DIR$/master/classes/agent.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/master/classes/sensor.py" afterPath="$PROJECT_DIR$/master/classes/sensor.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/master/classes/world.py" afterPath="$PROJECT_DIR$/master/classes/world.py" />
     </list>
     <ignored path="$PROJECT_DIR$/.idea/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -20,18 +20,8 @@
       <file leaf-file-name="main.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/master/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="439">
-              <caret line="68" column="15" lean-forward="false" selection-start-line="68" selection-start-column="15" selection-end-line="68" selection-end-column="15" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="actuator.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/master/classes/agent_backup/actuator.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="239">
+              <caret line="25" column="35" lean-forward="true" selection-start-line="25" selection-start-column="35" selection-end-line="25" selection-end-column="35" />
               <folding />
             </state>
           </provider>
@@ -50,22 +40,32 @@
       <file leaf-file-name="world.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/master/classes/world.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="960">
-              <caret line="59" column="30" lean-forward="true" selection-start-line="58" selection-start-column="8" selection-end-line="59" selection-end-column="30" />
+            <state relative-caret-position="17">
+              <caret line="1" column="18" lean-forward="true" selection-start-line="1" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="agent.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/master/classes/agent.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="90">
+              <caret line="11" column="34" lean-forward="false" selection-start-line="11" selection-start-column="34" selection-end-line="11" selection-end-column="34" />
               <folding>
-                <element signature="e#0#18#0" expanded="true" />
+                <element signature="e#0#26#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="agent.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/master/classes/agent.py">
+      <file leaf-file-name="actuator.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/master/classes/actuator.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="30" column="12" lean-forward="false" selection-start-line="30" selection-start-column="12" selection-end-line="30" selection-end-column="12" />
+            <state relative-caret-position="1054">
+              <caret line="62" column="21" lean-forward="false" selection-start-line="62" selection-start-column="21" selection-end-line="62" selection-end-column="21" />
               <folding>
-                <element signature="e#0#26#0" expanded="true" />
+                <element signature="e#0#13#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -74,8 +74,18 @@
       <file leaf-file-name="sensor.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/master/classes/sensor.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="4" column="30" lean-forward="false" selection-start-line="4" selection-start-column="30" selection-end-line="4" selection-end-column="30" />
+            <state relative-caret-position="170">
+              <caret line="10" column="30" lean-forward="false" selection-start-line="10" selection-start-column="30" selection-end-line="10" selection-end-column="30" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="actuator.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/master/classes/agent_backup/actuator.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="476">
+              <caret line="32" column="0" lean-forward="false" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -98,8 +108,11 @@
       <list>
         <option value="$PROJECT_DIR$/master/classes/behavior.py" />
         <option value="$PROJECT_DIR$/master/classes/world.py" />
-        <option value="$PROJECT_DIR$/master/classes/sensor.py" />
+        <option value="$PROJECT_DIR$/master/main.py" />
+        <option value="$PROJECT_DIR$/master/classes/agent_backup/actuator.py" />
         <option value="$PROJECT_DIR$/master/classes/agent.py" />
+        <option value="$PROJECT_DIR$/master/classes/actuator.py" />
+        <option value="$PROJECT_DIR$/master/classes/sensor.py" />
       </list>
     </option>
   </component>
@@ -142,6 +155,13 @@
               <item name="Framework" type="462c0819:PsiDirectoryNode" />
               <item name="master" type="462c0819:PsiDirectoryNode" />
               <item name="classes" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Framework" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Framework" type="462c0819:PsiDirectoryNode" />
+              <item name="master" type="462c0819:PsiDirectoryNode" />
+              <item name="classes" type="462c0819:PsiDirectoryNode" />
+              <item name="agent_backup" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -267,7 +287,21 @@
       <option name="project" value="LOCAL" />
       <updated>1502722614786</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="erster Sensorikansatz. Backup der alten Klassen in agent_backup">
+      <created>1502725541699</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1502725541699</updated>
+    </task>
+    <task id="LOCAL-00009" summary="erster Sensorikansatz. Backup der alten Klassen in agent_backup">
+      <created>1502783945472</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1502783945472</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -331,47 +365,14 @@
     <MESSAGE value="Merge branch 'master' of https://github.com/odevee/Framework&#10;&#10;# Conflicts:&#10;#&#9;master/world.py" />
     <MESSAGE value="pythonised random walk act function in actuator and updated rest to match" />
     <MESSAGE value="behavior reimplementiert" />
-    <option name="LAST_COMMIT_MESSAGE" value="behavior reimplementiert" />
+    <MESSAGE value="erster Sensorikansatz. Backup der alten Klassen in agent_backup" />
+    <option name="LAST_COMMIT_MESSAGE" value="erster Sensorikansatz. Backup der alten Klassen in agent_backup" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/master/classes/agent_backup/actuator.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/master/classes/world.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="960">
-          <caret line="59" column="30" lean-forward="true" selection-start-line="58" selection-start-column="8" selection-end-line="59" selection-end-column="30" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/master/main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="439">
-          <caret line="68" column="15" lean-forward="false" selection-start-line="68" selection-start-column="15" selection-end-line="68" selection-end-column="15" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/master/classes/sensor.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="30" lean-forward="false" selection-start-line="4" selection-start-column="30" selection-end-line="4" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/master/classes/behavior.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -380,12 +381,54 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/master/classes/agent_backup/actuator.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="476">
+          <caret line="32" column="0" lean-forward="false" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/master/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="239">
+          <caret line="25" column="35" lean-forward="true" selection-start-line="25" selection-start-column="35" selection-end-line="25" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/master/classes/world.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="18" lean-forward="true" selection-start-line="1" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/master/classes/agent.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="30" column="12" lean-forward="false" selection-start-line="30" selection-start-column="12" selection-end-line="30" selection-end-column="12" />
+        <state relative-caret-position="90">
+          <caret line="11" column="34" lean-forward="false" selection-start-line="11" selection-start-column="34" selection-end-line="11" selection-end-column="34" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/master/classes/sensor.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="30" lean-forward="false" selection-start-line="10" selection-start-column="30" selection-end-line="10" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/master/classes/actuator.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1054">
+          <caret line="62" column="21" lean-forward="false" selection-start-line="62" selection-start-column="21" selection-end-line="62" selection-end-column="21" />
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
           </folding>
         </state>
       </provider>
