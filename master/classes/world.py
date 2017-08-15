@@ -29,7 +29,7 @@ class World:
             for x in range(self.width):
                 for y in range(self.height):
                     char = lines[y][x]
-                    if char != 'n':
+                    if char != ' ':
                         self.spawn(EntityType(int(char)), x, y)
             self.entities_n = self.entities
 
