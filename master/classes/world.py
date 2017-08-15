@@ -22,9 +22,9 @@ class World:
     #loads a map from the specified map-file
     def loadMap(self, path):
         with open(path, 'r') as f:
-            lines = np.array([line.replace('\n','') for line in f])
+            lines = [line.replace('\n','') for line in f]
             self.width = len(lines[0])
-            self.height = lines.size
+            self.height = len(lines)
             self.entities = np.empty((self.width, self.height), dtype=Entity)
             for x in range(self.width):
                 for y in range(self.height):
