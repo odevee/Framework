@@ -33,3 +33,4 @@ class Agent(Entity):
         tup = self.actuator.getAction(slice, self.x, self.y)
         self.x = tup[0]
         self.y = tup[1]
+        #print(neighbors)
