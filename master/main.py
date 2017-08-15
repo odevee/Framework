@@ -62,6 +62,8 @@ world.spawn(EntityType.Agent, 17, 9)
 # set up display
 DISP_SURF = pygame.display.set_mode((world.width * TILESIZE, world.height * TILESIZE), pygame.NOFRAME)
 
+def TimePastSinceStart():
+    return (int(pygame.time.get_ticks()/1000))
 
 # draws the entities onto the grid
 def render():
