@@ -1,24 +1,22 @@
-#constants
+# constants
 FPS        = 10
 TILESIZE   = 40
-MAP_WIDTH  = 20
-MAP_HEIGHT = 20
 
-#colours
+# colours
 BLACK  = (0,0,0)
 WHITE  = (255,255,255)
 RED    = (200, 0, 0)
 GREEN  = (0,200,0)
 BLUE   = (0,0,200)
 
-#import modules
+# import modules
 import pygame, sys, random
 
-#import some useful constants
+# import some useful constants
 from pygame.locals import *
 
-#import classes
-#ignore warnings - it works!
+# import classes
+# ignore warnings - it works!
 from classes.entity     import Entity
 from classes.world      import World
 from classes.entityType import EntityType
@@ -31,61 +29,55 @@ from classes.goal       import Goal
 pygame.init()
 fpsClock = pygame.time.Clock()
 
-#load the images
+# load the images
 AGENT    = pygame.image.load('resources/agent.bmp')
 FOOD     = pygame.image.load('resources/food.bmp')
 GOAL     = pygame.image.load('resources/goal.bmp')
 OBSTACLE = pygame.image.load('resources/obstacle.bmp')
-#this dictionary allows searching for the pertinent image by type
+# this dictionary allows searching for the pertinent image by type
 images = {Agent:AGENT, Food:FOOD, Goal:GOAL, Obstacle:OBSTACLE}
 
-#set up display
-DISP_SURF = pygame.display.set_mode((MAP_WIDTH*TILESIZE, MAP_HEIGHT*TILESIZE), pygame.NOFRAME)
-#pygame.display.set_caption('World')
-#pygame.display.set_icon(AGENT)
+# draws a Border of Obstacles around the world to prevent agents from leaving it
+# def drawBorder():
+#     #top and bottom
+#     for x in range(MAP_WIDTH):
+#         world.spawn(EntityType.Obstacle, x, 0)
+#         world.spawn(EntityType.Obstacle, x, MAP_HEIGHT-1)
+#     #left and right
+#     for y in range(1, MAP_HEIGHT - 1):
+#         world.spawn(EntityType.Obstacle, 0, y)
+#         world.spawn(EntityType.Obstacle, MAP_WIDTH - 1, y)
 
-#draws a Border of Obstacles around the world to prevent agents from leaving it
-def drawBorder():
-    #top and bottom
-    for x in range(MAP_WIDTH):
-        world.spawn(EntityType.Obstacle, x, 0)
-        world.spawn(EntityType.Obstacle, x, MAP_HEIGHT-1)
-    #left and right
-    for y in range(1, MAP_HEIGHT - 1):
-        world.spawn(EntityType.Obstacle, 0, y)
-        world.spawn(EntityType.Obstacle, MAP_WIDTH - 1, y)
+# initialize world
+world = World()
+world.loadMap('resources/maps/barbell.txt')
+world.spawn(EntityType.Agent, 9, 3)
 
-#initialize world
-world = World(MAP_WIDTH, MAP_HEIGHT)
-drawBorder()
-world.spawn(EntityType.Agent, 5, 5)
-#world.spawn(EntityType.Agent, 5, 6)
-#world.spawn(EntityType.Food, 1, 1)
-#world.spawn(EntityType.Food, 10, 10, perishable=True, lifetime=50)
-#world.spawn(EntityType.Goal, 1, 8)
+# set up display
+DISP_SURF = pygame.display.set_mode((world.width * TILESIZE, world.height * TILESIZE), pygame.NOFRAME)
 
-#draws the entities onto the grid
+# draws the entities onto the grid
 def render():
     for row in world.entities:
         for entity in row:
             if (type(entity) != type(None)):
                 DISP_SURF.blit(images[type(entity)], (entity.x * TILESIZE, entity.y * TILESIZE))
 
-#world loop
+# world loop
 while True:
-    #get all the user events
+    # get all the user events
     for event in pygame.event.get():
-        #if the user wants to quit
+        # if the user wants to quit (ESC)
         if event.type == QUIT or (event.type == KEYDOWN and event.key == K_ESCAPE ):
             pygame.quit()
             sys.exit()
-    #draw grid
+    # draw grid
     DISP_SURF.fill(BLACK)
-    for row in range(MAP_HEIGHT):
-        for column in range(MAP_WIDTH):
-            #add a white square (drawing surface, colour, coordinates, border thickness)
+    for row in range(world.height):
+        for column in range(world.width):
+            # add a white square (drawing surface, colour, coordinates, border thickness)
             pygame.draw.rect(DISP_SURF, WHITE, (column*TILESIZE, row*TILESIZE, TILESIZE,TILESIZE), 1)
-    #update the display
+    # update the display
     fpsClock.tick(FPS)
     world.update()
     render()

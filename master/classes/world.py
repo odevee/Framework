@@ -11,12 +11,27 @@ from .obstacle   import Obstacle
 # define the class "World": represents the world grid with all entities
 class World:
     # constructor
-    def __init__(self, width, height):
-        (self.width, self.height) = width, height                   # define width and height
-        self.entities = np.empty((width, height), dtype=Entity)     # array of all entities in the world ...
-        self.entities_n = self.entities                             # ... and a copy of the array
+    def __init__(self):
+        #(self.width, self.height) = width, height                   # define width and height
+        #self.entities = np.empty((width, height), dtype=Entity)     # array of all entities in the world ...
+        #self.entities_n = self.entities                             # ... and a copy of the array
         # note: entities_n is used as a way to specify entitiy-modification intent
         #       during world updates, to do conflict management
+        pass
+
+    #loads a map from the specified map-file
+    def loadMap(self, path):
+        with open(path, 'r') as f:
+            lines = np.array([line.replace('\n','') for line in f])
+            self.width = len(lines[0])
+            self.height = lines.size
+            self.entities = np.empty((self.width, self.height), dtype=Entity)
+            for x in range(self.width):
+                for y in range(self.height):
+                    char = lines[y][x]
+                    if char != 'n':
+                        self.spawn(EntityType(int(char)), x, y)
+            self.entities_n = self.entities
 
     # spawns entities by creating and putting them into the entities-array;
     # can be passed any kwd-argument of any type of entity
