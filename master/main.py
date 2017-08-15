@@ -6,8 +6,8 @@ import os
 from pygame.locals import *
 
 # open window at specified position
-#position = (0, 0)
-#os.environ['SDL_VIDEO_WINDOW_POS'] = str(position[0]) + "," + str(position[1])
+# position = (0, 0)
+# os.environ['SDL_VIDEO_WINDOW_POS'] = str(position[0]) + "," + str(position[1])
 os.environ['SDL_VIDEO_CENTERED'] = '1'
 
 # constants
@@ -57,7 +57,7 @@ images = {Agent: AGENT, Food: FOOD, Goal: GOAL, Obstacle: OBSTACLE}
 # initialize world
 world = World()
 world.loadMap('resources/maps/face.txt')
-world.spawn(EntityType.Agent, 17, 9)
+world.spawn(EntityType.Agent, 1, 1)
 
 # set up display
 DISP_SURF = pygame.display.set_mode((world.width * TILESIZE, world.height * TILESIZE), pygame.NOFRAME)
@@ -71,6 +71,7 @@ def render():
                 DISP_SURF.blit(images[type(entity)], (entity.x * TILESIZE, entity.y * TILESIZE))
 
 # world loop
+hold = False
 while True:
     # get all the user events
     for event in pygame.event.get():
@@ -78,6 +79,12 @@ while True:
         if event.type == QUIT or (event.type == KEYDOWN and event.key == K_ESCAPE):
             pygame.quit()
             sys.exit()
+        if event.type == KEYDOWN and event.key == K_SPACE:
+            hold = not hold
+            if hold:
+                print('GAME ON HOLD')
+            else:
+                print('CONTINUE')
     # draw grid
     DISP_SURF.fill(BLACK)
     for row in range(world.height):
@@ -86,6 +93,7 @@ while True:
             pygame.draw.rect(DISP_SURF, WHITE, (column*TILESIZE, row*TILESIZE, TILESIZE, TILESIZE), 1)
     # update the display
     fpsClock.tick(FPS)
-    world.update()
+    if not hold:
+        world.update()
     render()
     pygame.display.update()
