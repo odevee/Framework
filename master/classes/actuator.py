@@ -3,8 +3,8 @@ import random
 # und soll über den Agenten mit den Sensorinformationen aufgerufen werden. Die restliche Struktur der Klasse ist
 # implementierungsspezifisch.
 class Actuator:
-    def __init__(self):
-        pass
+    def __init__(self, steps):
+        self.steps = steps
 
 # implementation of random walk: pick where to go (one step increment) or whether
 # to stay at random, and return intended future coordinates as tuple
@@ -35,22 +35,28 @@ class Actuator:
 
 # returns all coordinates THEORETICALLY accessible from a given point
     def accessibleCoord(steps, x, y):
-        poss_coord=[]
-        while steps >= 0:
-            for i in range(steps+1):
-                poss_coord.extend( [ (x+i , y+(steps-i)),
+         poss_coord=[]
+         while steps >= 0:
+             for i in range(steps+1):
+                 poss_coord.extend( [ (x+i , y+(steps-i)),
                                       (x-i , y-(steps-i)),
                                       (x+i , y-(steps-i)),
                                       (x-i , y+(steps-i))
                                      ] )
-                steps -= 1
-        return list(set(poss_coord))
+             steps -= 1
+         return list(set(poss_coord))
 
 
+
+    def getAction(self, slice, x, y):
+        self.calcEMP(slice, x, y)
+
+
+    def calcEMP(self, slice, x, y):
+        pass
 
 """"
 # Funktion noch UNGETESTET: sollte die Anzahl Zugmöglichkeiten in n Zügen iterativ bestimmen
-# nach dem was Polani geagt hat wahrscheinlich pointless
     def EMP_optionCounter(steps, x, y, sensorinfo):
         stepnum = steps
         accessible_coord = [(x,y)]
@@ -72,3 +78,4 @@ class Actuator:
         return len(set(accessible_coord))
 
 """
+
