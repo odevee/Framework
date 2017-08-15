@@ -34,17 +34,17 @@ class Actuator:
             return True
 
 # returns all coordinates THEORETICALLY accessible from a given point
-     def accessibleCoord(steps, x, y):
-         poss_coord=[]
-         while steps >= 0:
-             for i in range(steps+1):
-                 poss_coord.extend( [ (x+i , y+(steps-i)),
+    def accessibleCoord(steps, x, y):
+        poss_coord=[]
+        while steps >= 0:
+            for i in range(steps+1):
+                poss_coord.extend( [ (x+i , y+(steps-i)),
                                       (x-i , y-(steps-i)),
                                       (x+i , y-(steps-i)),
                                       (x-i , y+(steps-i))
                                      ] )
-             steps -= 1
-         return list(set(poss_coord))
+                steps -= 1
+        return list(set(poss_coord))
 
 
 
