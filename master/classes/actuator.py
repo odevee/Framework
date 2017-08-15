@@ -89,6 +89,7 @@ class Actuator:
                 target = (n[0], n[1])
             elif emp == emp_max:
                 pass # find solution later
+        print(target)
         return target
 
 
