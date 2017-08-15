@@ -76,7 +76,7 @@ while True:
     #get all the user events
     for event in pygame.event.get():
         #if the user wants to quit
-        if event.type == QUIT:
+        if event.type == QUIT or (event.type == KEYDOWN and event.key == K_ESCAPE ):
             pygame.quit()
             sys.exit()
     #draw grid
