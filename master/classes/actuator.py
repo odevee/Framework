@@ -1,7 +1,7 @@
 import random
 import numpy as np
 
-from classes.entity     import Entity
+from classes.entity import Entity
 
 # Aktuator eines Agenten. Diese Klasse enthält die spezifische Logik, nach welcher der Agent handeln soll
 # und soll über den Agenten mit den Sensorinformationen aufgerufen werden. Die restliche Struktur der Klasse ist
@@ -19,26 +19,22 @@ class Actuator:
     def randomwalk(self, x, y):
         r = random.choice(["up", "down", "left", "right", "stay"]) # pick where to go
         if r == "up":           # go up ...
-            x = x
-            y = y + 1
+            y += 1
         elif r == "down":       # or go down...
-            x = x
-            y = y - 1
+            y -= 1
         elif r == "right":      # or go right ...
-            x = x + 1
-            y = y
+            x += 1
         elif r == "left":       # or go left
-            x = x - 1
-            y = y
+            x -= 1
         elif r == "stay":       # or stay where you are
-            x = x
-            y = y
+            pass
         return (x, y)
 
 # returns True if a set of coordinates lies outside the map
-    def outofWorld(x,y):
+    def outOfWorld(x,y):
         #if x < 0 or x > MAP_WIDTH or y < 0 or y > MAP_HEIGHT:
             return True
+
 
 # returns all coordinates THEORETICALLY accessible from a given point
     def accessibleCoord(steps, x, y):
@@ -53,6 +49,8 @@ class Actuator:
              steps -= 1
          return list(set(poss_coord))
 
+
+# returns all the neighbours, that are reachable within range steps form the current position
     def getNeighbours(self, slice, x, y, range, neighbours):
         n = len(slice)
         m = len(slice[0])
@@ -62,8 +60,6 @@ class Actuator:
             return
         if (type(slice[x][y]) == type(None) or slice[x][y].walkable == True):
             neighbours.add((x,y))
-        #else:
-         #   return
         self.getNeighbours(slice, x + 1, y, range - 1, neighbours)
         self.getNeighbours(slice, x - 1, y, range - 1, neighbours)
         self.getNeighbours(slice, x, y + 1, range - 1, neighbours)
@@ -72,10 +68,12 @@ class Actuator:
         return neighbours
 
 
+# decides where to go based on empowerment
     def getAction(self, slice, x, y):
         n = len(slice)
         m = len(slice)
-        self.slice = np.empty((n, m), dtype=Entity)     # array of all entities in the world ...
+        # array of all entities in the world ...
+        self.slice = np.empty((n, m), dtype=Entity)
         # find direct neighbours
         direct_neighbours = {(x,y)}
         self.getNeighbours(slice, x, y, self.range, direct_neighbours)
@@ -93,7 +91,7 @@ class Actuator:
         return target
 
 
-
+# calculates the empowerment of given position in the world slice
     def calcEMP(self, slice, x, y):
         neighbours = {(x,y)}
         self.getNeighbours(slice, x, y, self.think_range, neighbours)

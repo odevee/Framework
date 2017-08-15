@@ -1,19 +1,25 @@
-# constants
-FPS        = 10
-TILESIZE   = 40
-
-# colours
-BLACK  = (0,0,0)
-WHITE  = (255,255,255)
-RED    = (200, 0, 0)
-GREEN  = (0,200,0)
-BLUE   = (0,0,200)
-
 # import modules
-import pygame, sys, random
-
+import pygame
+import sys
+import os
 # import some useful constants
 from pygame.locals import *
+
+# open window at specified position
+#position = (0, 0)
+#os.environ['SDL_VIDEO_WINDOW_POS'] = str(position[0]) + "," + str(position[1])
+os.environ['SDL_VIDEO_CENTERED'] = '1'
+
+# constants
+FPS = 10
+TILESIZE = 40
+
+# colours
+BLACK = (0, 0, 0)
+WHITE = (255, 255, 255)
+RED = (200, 0, 0)
+GREEN = (0, 200, 0)
+BLUE = (0, 0, 200)
 
 # import classes
 # ignore warnings - it works!
@@ -25,17 +31,17 @@ from classes.food       import Food
 from classes.obstacle   import Obstacle
 from classes.goal       import Goal
 
-#start the pygame library and create a clock module
+# start the pygame library and create a clock module
 pygame.init()
 fpsClock = pygame.time.Clock()
 
 # load the images
-AGENT    = pygame.image.load('resources/agent.bmp')
-FOOD     = pygame.image.load('resources/food.bmp')
-GOAL     = pygame.image.load('resources/goal.bmp')
+AGENT = pygame.image.load('resources/agent.bmp')
+FOOD = pygame.image.load('resources/food.bmp')
+GOAL = pygame.image.load('resources/goal.bmp')
 OBSTACLE = pygame.image.load('resources/obstacle.bmp')
 # this dictionary allows searching for the pertinent image by type
-images = {Agent:AGENT, Food:FOOD, Goal:GOAL, Obstacle:OBSTACLE}
+images = {Agent: AGENT, Food: FOOD, Goal: GOAL, Obstacle: OBSTACLE}
 
 # draws a Border of Obstacles around the world to prevent agents from leaving it
 # def drawBorder():
@@ -50,17 +56,18 @@ images = {Agent:AGENT, Food:FOOD, Goal:GOAL, Obstacle:OBSTACLE}
 
 # initialize world
 world = World()
-world.loadMap('resources/maps/maze.txt')
-world.spawn(EntityType.Agent, 1, 1)
+world.loadMap('resources/maps/face.txt')
+world.spawn(EntityType.Agent, 17, 9)
 
 # set up display
 DISP_SURF = pygame.display.set_mode((world.width * TILESIZE, world.height * TILESIZE), pygame.NOFRAME)
 
+
 # draws the entities onto the grid
 def render():
-    for row in world.entities:
-        for entity in row:
-            if (type(entity) != type(None)):
+    for line in world.entities:
+        for entity in line:
+            if isinstance(entity, Entity):
                 DISP_SURF.blit(images[type(entity)], (entity.x * TILESIZE, entity.y * TILESIZE))
 
 # world loop
@@ -68,7 +75,7 @@ while True:
     # get all the user events
     for event in pygame.event.get():
         # if the user wants to quit (ESC)
-        if event.type == QUIT or (event.type == KEYDOWN and event.key == K_ESCAPE ):
+        if event.type == QUIT or (event.type == KEYDOWN and event.key == K_ESCAPE):
             pygame.quit()
             sys.exit()
     # draw grid
@@ -76,7 +83,7 @@ while True:
     for row in range(world.height):
         for column in range(world.width):
             # add a white square (drawing surface, colour, coordinates, border thickness)
-            pygame.draw.rect(DISP_SURF, WHITE, (column*TILESIZE, row*TILESIZE, TILESIZE,TILESIZE), 1)
+            pygame.draw.rect(DISP_SURF, WHITE, (column*TILESIZE, row*TILESIZE, TILESIZE, TILESIZE), 1)
     # update the display
     fpsClock.tick(FPS)
     world.update()
