@@ -56,8 +56,8 @@ images = {Agent: AGENT, Food: FOOD, Goal: GOAL, Obstacle: OBSTACLE}
 
 # initialize world
 world = World()
-world.loadMap('resources/maps/maze.txt')
-world.spawn(EntityType.Agent, 17, 9)
+world.loadMap('resources/maps/square25.txt')
+world.spawn(EntityType.Agent, 1, 9)
 
 # set up display
 DISP_SURF = pygame.display.set_mode((world.width * TILESIZE, world.height * TILESIZE), pygame.NOFRAME)
