@@ -65,21 +65,27 @@ class Actuator:
             self.getNeighbours(slice, xa, ya, x - 1, y, range - 1, neighbours)
             self.getNeighbours(slice, xa, ya, x, y + 1, range - 1, neighbours)
             self.getNeighbours(slice, xa, ya, x, y - 1, range - 1, neighbours)
-
         return neighbours
 
 
-    def getDirectNeighbours(self, slice, xa, ya, x, y, range, neighbours):
-        n = len(slice)
-        m = len(slice[0])
-        if x < 0 or x >= n or y < 0 or y >= m:
-            return
-        neighbours.add((x, y))
-        self.getNeighbours(slice, xa, ya, x + 1, y, range - 1, neighbours)
-        self.getNeighbours(slice, xa, ya, x - 1, y, range - 1, neighbours)
-        self.getNeighbours(slice, xa, ya, x, y + 1, range - 1, neighbours)
-        self.getNeighbours(slice, xa, ya, x, y - 1, range - 1, neighbours)
-        return neighbours
+    # def getDirectNeighbours(self, slice, xa, ya, x, y, range, neighbours):
+    #     n = len(slice)
+    #     m = len(slice[0])
+    #     if x < 0 or x >= n or y < 0 or y >= m:
+    #         return
+    #     neighbours.add((x, y))
+    #     self.getNeighbours(slice, xa, ya, x + 1, y, range - 1, neighbours)
+    #     self.getNeighbours(slice, xa, ya, x - 1, y, range - 1, neighbours)
+    #     self.getNeighbours(slice, xa, ya, x, y + 1, range - 1, neighbours)
+    #     self.getNeighbours(slice, xa, ya, x, y - 1, range - 1, neighbours)
+    #     return neighbours
+
+# calculates the empowerment of given position in the world slice
+    def calcEMP(self, slice, xa, ya, x, y):
+        neighbours = {(x,y)}
+        self.getNeighbours(slice, xa, ya, x, y, self.think_range, neighbours)
+        #print('far neighbours: ', neighbours)
+        return len(neighbours)
 
 
 # decides where to go based on empowerment
@@ -90,35 +96,24 @@ class Actuator:
         self.slice = np.empty((n, m), dtype=Entity)
         # find direct neighbours
         direct_neighbours = {(x,y)}
-        self.getDirectNeighbours(slice, x, y, x, y, self.range, direct_neighbours)
-        print('Position:', x, y)
-        print('Neighbours: ', direct_neighbours)
+        self.getNeighbours(slice, x, y, x, y, self.range, direct_neighbours)
+        #print('Position:', x, y)
+        #print('Neighbours: ', direct_neighbours)
         # calculate empowerment
         target = (x, y)
+        #find all potential neighbours,
+        # i.e. neighbours with maximum empowerment
+        #one of them will be randomly chosen
         emp_max = -1
-        maxs = [(x,y)]
+        potentialTargets = []
         for n in direct_neighbours:
             emp = self.calcEMP(slice, x, y, n[0], n[1])
-            print('Empowerment at ', n[0], n[1], emp)
             if emp > emp_max:
+                potentialTargets = []
+            if emp >= emp_max:
                 emp_max = emp
-                target = (n[0], n[1])
-                # in case of a new max emp: refresh max set
-                maxs = [(n[0], n[1])]
-            # in case of equality: append all the cords with equal emp
-            elif emp == emp_max:
-                maxs.append((n[0], n[1]))
-        # find random max with laplace
-        n = len(maxs)
-        print(n)
-        l = random.randint(0,n-1)
-
-        return maxs.__getitem__(l)
-
-
-# calculates the empowerment of given position in the world slice
-    def calcEMP(self, slice, xa, ya, x, y):
-        neighbours = {(x,y)}
-        self.getNeighbours(slice, xa, ya, x, y, self.think_range, neighbours)
-        print('far neighbours: ', neighbours)
-        return len(neighbours)
+                potentialTargets.append((n[0], n[1], emp))
+        for t in potentialTargets:
+            print('Maximum empowerment at (',t[0], t[1],'): ',t[2])
+        print ('\n')
+        return random.choice(potentialTargets)
