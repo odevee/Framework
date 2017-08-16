@@ -9,7 +9,7 @@ class Agent(Entity):
     # constructs an agent with x,y coordinates and instantiates an Actuator and a Sensor
     def __init__(self, x, y, entities):
         Entity.__init__(self, x, y, walkable=False, deleteme=False)
-        self.actuator = Actuator(3)
+        self.actuator = Actuator(5)
         self.sensor = Sensor(entities)
         self.behavior = Behavior()
 
@@ -26,9 +26,9 @@ class Agent(Entity):
         #self.x = tup[0]
         #self.y = tup[1]
         #for row in self.sensor.vision:
-         #   for entity in row:
-          #      if(type(entity) != type(None)):
-           #         print("x= ",entity.x," und y =", entity.y," mit Typ ", type(entity))
+        #   for entity in row:
+        #      if(type(entity) != type(None)):
+        #         print("x= ",entity.x," und y =", entity.y," mit Typ ", type(entity))
         slice = self.sensor.getSlice()
         tup = self.actuator.getAction(slice, self.x, self.y)
         self.x = tup[0]

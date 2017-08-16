@@ -51,21 +51,48 @@ class Actuator:
 
 
 # returns all the neighbours, that are reachable within range steps form the current position
-    def getNeighbours(self, slice, x, y, range, neighbours):
+    def getNeighbours(self, slice, xa, ya, x, y, range, neighbours, seen):
         n = len(slice)
         m = len(slice[0])
-        if x < 0 or x >=n or y < 0 or y >= m:
+        if x < 0 or x >= n or y < 0 or y >= m:
             return
         if range == -1:
             return
-        if (type(slice[x][y]) == type(None) or slice[x][y].walkable == True):
-            neighbours.add((x,y))
-        self.getNeighbours(slice, x + 1, y, range - 1, neighbours)
-        self.getNeighbours(slice, x - 1, y, range - 1, neighbours)
-        self.getNeighbours(slice, x, y + 1, range - 1, neighbours)
-        self.getNeighbours(slice, x, y - 1, range - 1, neighbours)
-
+        if type(slice[x][y]) == type(None) or slice[x][y].walkable == True or (x, y) == (xa, ya):
+            #print(slice[x][y], self)
+            neighbours.add((x, y))
+            seen.add((x,y))
+            if not((x + 1, y) in seen):
+                self.getNeighbours(slice, xa, ya, x + 1, y, range - 1, neighbours, seen)
+                # print(seen, " x = ", x + 1, " y = ", y) debug
+            if not((x - 1, y) in seen):
+                self.getNeighbours(slice, xa, ya, x - 1, y, range - 1, neighbours, seen)
+            if not((x, y + 1) in seen):
+                self.getNeighbours(slice, xa, ya, x, y + 1, range - 1, neighbours, seen)
+            if not((x, y - 1) in seen):
+                self.getNeighbours(slice, xa, ya, x, y - 1, range - 1, neighbours, seen)
         return neighbours
+
+
+    # def getDirectNeighbours(self, slice, xa, ya, x, y, range, neighbours):
+    #     n = len(slice)
+    #     m = len(slice[0])
+    #     if x < 0 or x >= n or y < 0 or y >= m:
+    #         return
+    #     neighbours.add((x, y))
+    #     self.getNeighbours(slice, xa, ya, x + 1, y, range - 1, neighbours)
+    #     self.getNeighbours(slice, xa, ya, x - 1, y, range - 1, neighbours)
+    #     self.getNeighbours(slice, xa, ya, x, y + 1, range - 1, neighbours)
+    #     self.getNeighbours(slice, xa, ya, x, y - 1, range - 1, neighbours)
+    #     return neighbours
+
+# calculates the empowerment of given position in the world slice
+    def calcEMP(self, slice, xa, ya, x, y):
+        neighbours = {(x,y)}
+        seen = {(x,y)}
+        self.getNeighbours(slice, xa, ya, x, y, self.think_range, neighbours, seen)
+        #print('far neighbours: ', neighbours)
+        return len(neighbours)
 
 
 # decides where to go based on empowerment
@@ -76,23 +103,25 @@ class Actuator:
         self.slice = np.empty((n, m), dtype=Entity)
         # find direct neighbours
         direct_neighbours = {(x,y)}
-        self.getNeighbours(slice, x, y, self.range, direct_neighbours)
+        seen = {(x,y)}
+        self.getNeighbours(slice, x, y, x, y, self.range, direct_neighbours, seen)
+        #print('Position:', x, y)
+        #print('Neighbours: ', direct_neighbours)
         # calculate empowerment
         target = (x, y)
+        #find all potential neighbours,
+        # i.e. neighbours with maximum empowerment
+        #one of them will be randomly chosen
         emp_max = -1
+        potentialTargets = []
         for n in direct_neighbours:
-            emp = self.calcEMP(slice, n[0], n[1])
+            emp = self.calcEMP(slice, x, y, n[0], n[1])
             if emp > emp_max:
+                potentialTargets = []
+            if emp >= emp_max:
                 emp_max = emp
-                target = (n[0], n[1])
-            elif emp == emp_max:
-                pass # find solution later
-        #print(target)
-        return target
-
-
-# calculates the empowerment of given position in the world slice
-    def calcEMP(self, slice, x, y):
-        neighbours = {(x,y)}
-        self.getNeighbours(slice, x, y, self.think_range, neighbours)
-        return len(neighbours)
+                potentialTargets.append((n[0], n[1], emp))
+        for t in potentialTargets:
+            print('Maximum empowerment at (',t[0], t[1],'): ',t[2])
+        print ('\n')
+        return random.choice(potentialTargets)
