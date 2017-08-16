@@ -1,23 +1,23 @@
 import random
 import numpy as np
-
 from classes.entity import Entity
+
 
 # Aktuator eines Agenten. Diese Klasse enthält die spezifische Logik, nach welcher der Agent handeln soll
 # und soll über den Agenten mit den Sensorinformationen aufgerufen werden. Die restliche Struktur der Klasse ist
 # implementierungsspezifisch.
 class Actuator:
-    def __init__(self, think_range, range = 1):
+    def __init__(self, think_range, range=1):
         self.range = range
         self.think_range = think_range
-        #self. slice =  np.empty(dtype=Entity)
+        # self. slice =  np.empty(dtype=Entity)
 
 
 # implementation of random walk: pick where to go (one step increment) or whether
 # to stay at random, and return intended future coordinates as tuple
 # THIS FUNCTION IS CALLED FROM agent.update()
     def randomwalk(self, x, y):
-        r = random.choice(["up", "down", "left", "right", "stay"]) # pick where to go
+        r = random.choice(["up", "down", "left", "right", "stay"])  # pick where to go
         if r == "up":           # go up ...
             y += 1
         elif r == "down":       # or go down...
@@ -28,26 +28,26 @@ class Actuator:
             x -= 1
         elif r == "stay":       # or stay where you are
             pass
-        return (x, y)
+        return x, y
+
 
 # returns True if a set of coordinates lies outside the map
-    def outOfWorld(x,y):
-        #if x < 0 or x > MAP_WIDTH or y < 0 or y > MAP_HEIGHT:
+    def outOfWorld(self, x, y):
+        # if x < 0 or x > MAP_WIDTH or y < 0 or y > MAP_HEIGHT:
             return True
 
 
 # returns all coordinates THEORETICALLY accessible from a given point
-    def accessibleCoord(steps, x, y):
-         poss_coord=[]
-         while steps >= 0:
-             for i in range(steps+1):
-                 poss_coord.extend( [ (x+i , y+(steps-i)),
-                                      (x-i , y-(steps-i)),
-                                      (x+i , y-(steps-i)),
-                                      (x-i , y+(steps-i))
-                                     ] )
-             steps -= 1
-         return list(set(poss_coord))
+    def accessibleCoord(self, steps, x, y):
+        poss_coord = []
+        while steps >= 0:
+            for i in range(steps+1):
+                poss_coord.extend([(x+i, y+(steps-i)),
+                                  (x-i, y-(steps-i)),
+                                  (x+i, y-(steps-i)),
+                                  (x-i, y+(steps-i))])
+            steps -= 1
+        return list(set(poss_coord))
 
 
 # returns all the neighbours, that are reachable within range steps form the current position
@@ -58,15 +58,13 @@ class Actuator:
             return
         if range == -1:
             return
-        if type(slice[x][y]) == type(None) or slice[x][y].walkable == True or (x, y) == (xa, ya):
-            #print(slice[x][y], self)
+        if isinstance(slice[x][y], type(None)) or slice[x][y].walkable is True or (x, y) == (xa, ya):
             neighbours.add((x, y))
             self.getNeighbours(slice, xa, ya, x + 1, y, range - 1, neighbours)
             self.getNeighbours(slice, xa, ya, x - 1, y, range - 1, neighbours)
             self.getNeighbours(slice, xa, ya, x, y + 1, range - 1, neighbours)
             self.getNeighbours(slice, xa, ya, x, y - 1, range - 1, neighbours)
         return neighbours
-
 
     # def getDirectNeighbours(self, slice, xa, ya, x, y, range, neighbours):
     #     n = len(slice)
@@ -82,9 +80,8 @@ class Actuator:
 
 # calculates the empowerment of given position in the world slice
     def calcEMP(self, slice, xa, ya, x, y):
-        neighbours = {(x,y)}
+        neighbours = {(x, y)}
         self.getNeighbours(slice, xa, ya, x, y, self.think_range, neighbours)
-        #print('far neighbours: ', neighbours)
         return len(neighbours)
 
 
@@ -95,18 +92,15 @@ class Actuator:
         # array of all entities in the world ...
         self.slice = np.empty((n, m), dtype=Entity)
         # find direct neighbours
-        direct_neighbours = {(x,y)}
+        direct_neighbours = {(x, y)}
         self.getNeighbours(slice, x, y, x, y, self.range, direct_neighbours)
-        #print('Position:', x, y)
-        #print('Neighbours: ', direct_neighbours)
-        # calculate empowerment
-        target = (x, y)
-        #find all potential neighbours,
+        # find all potential neighbours,
         # i.e. neighbours with maximum empowerment
-        #one of them will be randomly chosen
+        # one of them will be randomly chosen
         emp_max = -1
         potentialTargets = []
         for n in direct_neighbours:
+            # calculate empowerment
             emp = self.calcEMP(slice, x, y, n[0], n[1])
             if emp > emp_max:
                 potentialTargets = []
@@ -114,6 +108,6 @@ class Actuator:
                 emp_max = emp
                 potentialTargets.append((n[0], n[1], emp))
         for t in potentialTargets:
-            print('Maximum empowerment at (',t[0], t[1],'): ',t[2])
-        print ('\n')
+            print('Maximum empowerment at (', t[0], t[1], '): ', t[2])
+        print('\n')
         return random.choice(potentialTargets)
