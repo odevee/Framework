@@ -8,21 +8,17 @@ from .food       import Food
 from .goal       import Goal
 from .obstacle   import Obstacle
 
+
 # define the class "World": represents the world grid with all entities
 class World:
     # constructor
     def __init__(self):
-        #(self.width, self.height) = width, height                   # define width and height
-        #self.entities = np.empty((width, height), dtype=Entity)     # array of all entities in the world ...
-        #self.entities_n = self.entities                             # ... and a copy of the array
-        # note: entities_n is used as a way to specify entitiy-modification intent
-        #       during world updates, to do conflict management
         pass
 
-    #loads a map from the specified map-file, given path
+    # loads a map from the specified map-file, given path
     def loadMap(self, path):
         with open(path, 'r') as f:
-            lines = [line.replace('\n','') for line in f]
+            lines = [line.replace('\n', '') for line in f]
             self.width = len(lines[0])
             self.height = len(lines)
             self.entities = np.empty((self.width, self.height), dtype=Entity)
@@ -87,9 +83,9 @@ class World:
         # call update method of all entities in the world
         for row in self.entities:
             for entity in row:
-                if (type(entity) != type(None)):
+                if isinstance(entity, Entity):
                     entity.update()
-        self.entities_n = self.entities # copy the world grid
+        self.entities_n = self.entities  # copy the world grid
 
         # modify all entities in the grid copy
         for x in range(self.width):
@@ -98,16 +94,16 @@ class World:
                 entity = self.entities_n[x][y]
 
                 # delete entities that want to be deleted
-                if type(entity) != type(None) and entity.deleteme:
+                if isinstance(entity, Entity) and entity.deleteme:
                     self.delEntity(entity, x, y)
 
                 # movement of entities
                 # if current coordinates differ from wanted ones (entity.x, entity.y)
-                elif (type(entity) != type(None) and (x,y) != (entity.x, entity.y)):
+                elif isinstance(entity, Entity) and (x, y) != (entity.x, entity.y):
                     # get entity at target position
                     entityAtTarget = self.entities_n[entity.x][entity.y]
                     # if desired position walkable, move the entity there
-                    if type(entityAtTarget) == type(None) or entityAtTarget.walkable:
+                    if isinstance(entityAtTarget, type(None)) or entityAtTarget.walkable:
                         self.moveEntity(entity, x, y, entity.x, entity.y)
                     # otherwise resolve the conflict
                     else:
