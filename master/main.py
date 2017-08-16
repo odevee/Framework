@@ -56,7 +56,7 @@ images = {Agent: AGENT, Food: FOOD, Goal: GOAL, Obstacle: OBSTACLE}
 
 # initialize world
 world = World()
-world.loadMap('resources/maps/maze.txt')
+world.loadMap('resources/maps/square25.txt')
 world.spawn(EntityType.Agent, 17, 9)
 
 # set up display
