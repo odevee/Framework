@@ -10,6 +10,17 @@ class Actuator:
     def __init__(self, think_range, range = 1):
         self.range = range
         self.think_range = think_range
+        # a priori probability for each actions
+        # up, right, down, left, stay
+        self.p_a = [0.2, 0.2, 0.2, 0.2, 0.2]
+        # probability for each action in the next step
+        self.p_a_next = self.p_a
+        # probability for state s under action a
+        self.p_s_a = [[0, 0, 0, 0, 0],
+                      [0, 0, 0, 0, 0],
+                      [0, 0, 0, 0, 0],
+                      [0, 0, 0, 0, 0],
+                      [0, 0, 0, 0, 0]]
         #self. slice =  np.empty(dtype=Entity)
 
 
@@ -125,3 +136,4 @@ class Actuator:
             print('Maximum empowerment at (',t[0], t[1],'): ',t[2])
         print ('\n')
         return random.choice(potentialTargets)
+

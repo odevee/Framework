@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="df5d7c02-1190-49af-9dec-019a99c4261a" name="Default" comment="Merge branch 'master' of https://github.com/odevee/Framework&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/master/resources/food2.bmp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/master/resources/food3.bmp" />
+    <list default="true" id="df5d7c02-1190-49af-9dec-019a99c4261a" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/master/resources/pacman_closed.bmp" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/master/resources/pacman_open.bmp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/master/classes/agent.py" afterPath="$PROJECT_DIR$/master/classes/agent.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/master/main.py" afterPath="$PROJECT_DIR$/master/main.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/master/classes/actuator.py" afterPath="$PROJECT_DIR$/master/classes/actuator.py" />
     </list>
     <ignored path="$PROJECT_DIR$/.idea/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -25,18 +24,52 @@
               <caret line="59" column="32" lean-forward="true" selection-start-line="59" selection-start-column="32" selection-end-line="59" selection-end-column="32" />
               <folding>
                 <element signature="e#17#30#0" expanded="true" />
+                <marker date="1502876186294" expanded="true" signature="1903:1950" ph="..." />
+                <marker date="1502876186294" expanded="true" signature="2000:2246" ph="..." />
+                <marker date="1502876186294" expanded="true" signature="2032:2246" ph="..." />
+                <marker date="1502876186294" expanded="true" signature="2060:2246" ph="..." />
+                <marker date="1502876186294" expanded="true" signature="2285:3167" ph="..." />
+                <marker date="1502876186294" expanded="true" signature="2352:2725" ph="..." />
+                <marker date="1502876186294" expanded="true" signature="2478:2527" ph="..." />
+                <marker date="1502876186294" expanded="true" signature="2586:2725" ph="..." />
+                <marker date="1502876186294" expanded="true" signature="2803:3038" ph="..." />
+                <marker date="1502876186294" expanded="true" signature="2845:3038" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="agent.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="agent.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/master/classes/agent.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="11" column="35" lean-forward="false" selection-start-line="11" selection-start-column="35" selection-end-line="11" selection-end-column="35" />
+            <state relative-caret-position="221">
+              <caret line="13" column="34" lean-forward="true" selection-start-line="13" selection-start-column="34" selection-end-line="13" selection-end-column="34" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="actuator.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/master/classes/actuator.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="306">
+              <caret line="18" column="25" lean-forward="true" selection-start-line="18" selection-start-column="25" selection-end-line="18" selection-end-column="25" />
+              <folding>
+                <element signature="e#0#13#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="world.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/master/classes/world.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="510">
+              <caret line="30" column="0" lean-forward="true" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
+              <folding>
+                <element signature="e#17#35#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -71,9 +104,9 @@
         <option value="$PROJECT_DIR$/master/resources/maps/square25.txt" />
         <option value="$PROJECT_DIR$/master/classes/world.py" />
         <option value="$PROJECT_DIR$/master/resources/maps/mazeExit.txt" />
-        <option value="$PROJECT_DIR$/master/classes/actuator.py" />
         <option value="$PROJECT_DIR$/master/main.py" />
         <option value="$PROJECT_DIR$/master/classes/agent.py" />
+        <option value="$PROJECT_DIR$/master/classes/actuator.py" />
       </list>
     </option>
   </component>
@@ -298,7 +331,14 @@
       <option name="project" value="LOCAL" />
       <updated>1502798477938</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="new food pictures">
+      <created>1502876157028</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1502876157028</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TodoView">
@@ -323,7 +363,7 @@
       <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2532124" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3776596" sideWeight="0.4973545" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3776596" sideWeight="0.4973545" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -412,7 +452,8 @@
     <MESSAGE value="minor changes, new map" />
     <MESSAGE value="minor changes" />
     <MESSAGE value="Merge branch 'master' of https://github.com/odevee/Framework&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml" />
-    <option name="LAST_COMMIT_MESSAGE" value="Merge branch 'master' of https://github.com/odevee/Framework&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml" />
+    <MESSAGE value="new food pictures" />
+    <option name="LAST_COMMIT_MESSAGE" value="new food pictures" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -461,6 +502,16 @@
           <caret line="68" column="15" lean-forward="false" selection-start-line="68" selection-start-column="15" selection-end-line="68" selection-end-column="15" />
           <folding>
             <element signature="e#17#30#0" expanded="true" />
+            <marker date="1502876186294" expanded="true" signature="1903:1950" ph="..." />
+            <marker date="1502876186294" expanded="true" signature="2000:2246" ph="..." />
+            <marker date="1502876186294" expanded="true" signature="2032:2246" ph="..." />
+            <marker date="1502876186294" expanded="true" signature="2060:2246" ph="..." />
+            <marker date="1502876186294" expanded="true" signature="2285:3167" ph="..." />
+            <marker date="1502876186294" expanded="true" signature="2352:2725" ph="..." />
+            <marker date="1502876186294" expanded="true" signature="2478:2527" ph="..." />
+            <marker date="1502876186294" expanded="true" signature="2586:2725" ph="..." />
+            <marker date="1502876186294" expanded="true" signature="2803:3038" ph="..." />
+            <marker date="1502876186294" expanded="true" signature="2845:3038" ph="..." />
           </folding>
         </state>
       </provider>
@@ -589,6 +640,16 @@
           <caret line="10" column="38" lean-forward="true" selection-start-line="10" selection-start-column="38" selection-end-line="10" selection-end-column="38" />
           <folding>
             <element signature="e#17#30#0" expanded="true" />
+            <marker date="1502876186294" expanded="true" signature="1903:1950" ph="..." />
+            <marker date="1502876186294" expanded="true" signature="2000:2246" ph="..." />
+            <marker date="1502876186294" expanded="true" signature="2032:2246" ph="..." />
+            <marker date="1502876186294" expanded="true" signature="2060:2246" ph="..." />
+            <marker date="1502876186294" expanded="true" signature="2285:3167" ph="..." />
+            <marker date="1502876186294" expanded="true" signature="2352:2725" ph="..." />
+            <marker date="1502876186294" expanded="true" signature="2478:2527" ph="..." />
+            <marker date="1502876186294" expanded="true" signature="2586:2725" ph="..." />
+            <marker date="1502876186294" expanded="true" signature="2803:3038" ph="..." />
+            <marker date="1502876186294" expanded="true" signature="2845:3038" ph="..." />
           </folding>
         </state>
       </provider>
@@ -629,6 +690,16 @@
           <caret line="68" column="15" lean-forward="false" selection-start-line="68" selection-start-column="15" selection-end-line="68" selection-end-column="15" />
           <folding>
             <element signature="e#17#30#0" expanded="true" />
+            <marker date="1502876186294" expanded="true" signature="1903:1950" ph="..." />
+            <marker date="1502876186294" expanded="true" signature="2000:2246" ph="..." />
+            <marker date="1502876186294" expanded="true" signature="2032:2246" ph="..." />
+            <marker date="1502876186294" expanded="true" signature="2060:2246" ph="..." />
+            <marker date="1502876186294" expanded="true" signature="2285:3167" ph="..." />
+            <marker date="1502876186294" expanded="true" signature="2352:2725" ph="..." />
+            <marker date="1502876186294" expanded="true" signature="2478:2527" ph="..." />
+            <marker date="1502876186294" expanded="true" signature="2586:2725" ph="..." />
+            <marker date="1502876186294" expanded="true" signature="2803:3038" ph="..." />
+            <marker date="1502876186294" expanded="true" signature="2845:3038" ph="..." />
           </folding>
         </state>
       </provider>
@@ -745,16 +816,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/master/classes/world.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="901">
-          <caret line="53" column="0" lean-forward="false" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
-          <folding>
-            <element signature="e#17#35#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/master/classes/obstacle.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -790,26 +851,46 @@
           <caret line="59" column="32" lean-forward="true" selection-start-line="59" selection-start-column="32" selection-end-line="59" selection-end-column="32" />
           <folding>
             <element signature="e#17#30#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/master/classes/actuator.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-727">
-          <caret line="66" column="63" lean-forward="false" selection-start-line="66" selection-start-column="63" selection-end-line="66" selection-end-column="63" />
-          <folding>
-            <element signature="e#0#13#0" expanded="true" />
+            <marker date="1502876186294" expanded="true" signature="1903:1950" ph="..." />
+            <marker date="1502876186294" expanded="true" signature="2000:2246" ph="..." />
+            <marker date="1502876186294" expanded="true" signature="2032:2246" ph="..." />
+            <marker date="1502876186294" expanded="true" signature="2060:2246" ph="..." />
+            <marker date="1502876186294" expanded="true" signature="2285:3167" ph="..." />
+            <marker date="1502876186294" expanded="true" signature="2352:2725" ph="..." />
+            <marker date="1502876186294" expanded="true" signature="2478:2527" ph="..." />
+            <marker date="1502876186294" expanded="true" signature="2586:2725" ph="..." />
+            <marker date="1502876186294" expanded="true" signature="2803:3038" ph="..." />
+            <marker date="1502876186294" expanded="true" signature="2845:3038" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/master/classes/agent.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="35" lean-forward="false" selection-start-line="11" selection-start-column="35" selection-end-line="11" selection-end-column="35" />
+        <state relative-caret-position="221">
+          <caret line="13" column="34" lean-forward="true" selection-start-line="13" selection-start-column="34" selection-end-line="13" selection-end-column="34" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/master/classes/world.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="30" column="0" lean-forward="true" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
+          <folding>
+            <element signature="e#17#35#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/master/classes/actuator.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="18" column="25" lean-forward="true" selection-start-line="18" selection-start-column="25" selection-end-line="18" selection-end-column="25" />
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
           </folding>
         </state>
       </provider>
