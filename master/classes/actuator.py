@@ -187,7 +187,21 @@ def aktualisiere_p_s(menge_a, menge_s, dict_p_a):
         dict_p_s.update({s:p_s(s,menge_a, dict_p_a)})
     return dict_p_s
 
-def empowerment_probab(menge_a, menge_s, dict_p_a):
+def zufallszahlennormiert_zuordene(menge):
+    summebisher = 0
+    dict_neu = {}
+    for a in menge:
+        zahl = random.random()+0.05
+        dict_neu.update({a:zahl})
+        summebisher = summebisher + zahl
+    dict_ausgabe={}
+    for a in menge:
+        dict_ausgabe.update({a:(dict_neu[a]/summebisher)})
+    print(dict_ausgabe)
+    return dict_ausgabe
+
+def empowerment_probab(menge_a, menge_s):
+    dict_p_a = zufallszahlennormiert_zuordene(menge_a)
     while 1:
         dict_p_s = aktualisiere_p_s(menge_a, menge_s, dict_p_a)
         dict_p_a_neu = aktualisiere_p_a(menge_a, menge_s, dict_p_a, dict_p_s)
