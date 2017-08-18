@@ -1,5 +1,6 @@
 import random
 import numpy as np
+import math
 
 from classes.entity import Entity
 
@@ -137,3 +138,90 @@ class Actuator:
         print ('\n')
         return random.choice(potentialTargets)
 
+#Methoden für Probabilistisches Empowerment
+def p_s_geg_a(a,s):
+    if a==s:
+        #print("p von "+ str(s) +" gegeben "+ str(a)+" ist 1")
+        return 1
+    else:
+        #print("p von "+ str(s) +" gegeben "+ str(a)+" ist 0")
+        return 0
+
+        #Kulberg leibner als Extra Funktion
+def Kulberg_Leibner(a,s,p_s):
+    if(p_s_geg_a(a,s)==0):
+        return 0
+    return p_s_geg_a(a,s)*math.log2(p_s_geg_a(a,s)/p_s)
+
+def p_a_nächstes_unnormiert(a, menge_s,p_a, dict_p_s):
+    p_strich = 0
+    for s in menge_s:
+        p_strich = p_strich + Kulberg_Leibner(a,s,dict_p_s[s])
+    p_strich = p_a*math.exp(p_strich)
+    return p_strich
+
+def p_s(s ,menge_a, dict_p_a):
+    ergebnis = 0
+    for a in menge_a:
+        #print("p von "+ str(a) + "gegeben "+str(s)+" mal p von "+ str(a)+ " ist " + str(p_s_geg_a(a,s)*dict_p_a[a]))
+        ergebnis = ergebnis + p_s_geg_a(a,s)*dict_p_a[a]
+    #print("p von "+ str(s) +" ist "+ str(ergebnis))
+    return ergebnis
+
+def aktualisiere_p_a(menge_a, menge_s, dict_p_a, dict_p_s):
+    dict_p_a_neu = {}
+    for a in menge_a:
+        dict_p_a_neu.update({a:p_a_nächstes_unnormiert(a, menge_s,dict_p_a[a],dict_p_s)})
+    normierungsfaktor = 0
+    for a in menge_a:
+        normierungsfaktor = normierungsfaktor + dict_p_a_neu[a]
+    dict_ausgabe = {}
+    normierungsfaktor = 1/normierungsfaktor
+    for a in menge_a:
+        dict_ausgabe.update({a:normierungsfaktor*dict_p_a_neu[a]})
+    return dict_ausgabe
+
+def aktualisiere_p_s(menge_a, menge_s, dict_p_a):
+    dict_p_s={}
+    for s in menge_s:
+        dict_p_s.update({s:p_s(s,menge_a, dict_p_a)})
+    return dict_p_s
+
+def zufallszahlennormiert_zuordene(menge):
+    summebisher = 0
+    dict_neu = {}
+    for a in menge:
+        zahl = random.random()+0.05
+        dict_neu.update({a:zahl})
+        summebisher = summebisher + zahl
+    dict_ausgabe={}
+    for a in menge:
+        dict_ausgabe.update({a:(dict_neu[a]/summebisher)})
+    print(dict_ausgabe)
+    return dict_ausgabe
+
+def empowerment_probab(menge_a, menge_s):
+    dict_p_a = zufallszahlennormiert_zuordene(menge_a)
+    while 1:
+        dict_p_s = aktualisiere_p_s(menge_a, menge_s, dict_p_a)
+        dict_p_a_neu = aktualisiere_p_a(menge_a, menge_s, dict_p_a, dict_p_s)
+        print("P von s")
+        print(dict_p_s)
+        print("P von a")
+        print(dict_p_a)
+        fehler = 0
+        for a in menge_a:
+            fehler = fehler + abs(dict_p_a_neu[a] - dict_p_a[a])
+        print(str(fehler) + " ist der Fehler")
+        if fehler < 0.01:
+            break
+        dict_p_a = dict_p_a_neu
+    print("fertig")
+    empowerment = 0
+    for a in menge_a:       #Doppelsumme
+        innere_summe = 0
+        for s in menge_s:
+            innere_summe = innere_summe + Kulberg_Leibner(a,s,dict_p_s[s])
+        empowerment = empowerment+ innere_summe * dict_p_a[a]
+    print("Empowerment ist "+str(empowerment))
+    return empowerment
